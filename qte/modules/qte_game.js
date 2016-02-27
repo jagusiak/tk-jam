@@ -1,5 +1,5 @@
 window.SJ.module('qte_game', function (sj) {
-    var canvas, scene, currentLocation = 0, canvasWidth = 1.5, speed = 0.02, runAnimation, jumpAnimation, slideAnimation, stinkAnimation,
+    var canvas, scene, currentLocation = 0, canvasWidth = 1.5, speed = 0.02, speed_add = 0, runAnimation, jumpAnimation, slideAnimation, stinkAnimation,
         loadAnimations = function () {
             var guy = scene.getObject('guy'), stink = scene.getObject('stink');
             runAnimation = sj.animation.create(guy);
@@ -28,7 +28,7 @@ window.SJ.module('qte_game', function (sj) {
         },
         run = function () {
             var background, obstacle, currentAnimation, guy,
-                frame = 0,
+                frame = 0, phase_counter = 0,
                 letters, letter, letterObjects = [],
                 listener,
                 generator, generated, progress;
@@ -55,7 +55,8 @@ window.SJ.module('qte_game', function (sj) {
 
             scene.onFrame = function () {
                 var leftSeconds = 10 - Math.floor(frame/25);
-                frame++;
+                frame++, phase_counter++;
+
                 progress.setTexture(progress.texture, 0, 0, leftSeconds/10,1);
                 progress.setPosition(0.02*leftSeconds + 0.03, 0.03, 10);
                 progress.setDimension(0.04*leftSeconds, 0.04);
@@ -84,19 +85,27 @@ window.SJ.module('qte_game', function (sj) {
                     speed = 0.02;
                     runAnimation.setStep(2);
                 }
-                currentLocation += speed;
-                obstacle.setPosition(obstacle.x + speed, obstacle.y, obstacle.z);
+                currentLocation += speed + speed_add;
+                obstacle.setPosition(obstacle.x + speed + speed_add, obstacle.y, obstacle.z);
 
                 if (obstacle.x > 1.8) {
                     obstacle.setPosition(-0.5, obstacle.y, obstacle.z);
                 }
 
                 for (var obj in generated.keys) {
-                    var ident = generated.keys[obj];
-                    letters.state(letterObjects[ident], listener.check(generated, ident));
+                    var ident = generated.keys[obj], check = listener.check(generated, ident);
+
+                    letters.state(letterObjects[ident], check);
+
+                    if(sj.letters.STATE_CORRECT === check){
+                        speed_add = 0.075;
+                    }
                 }
 
-                if (frame % 60 === 0) {
+                if (phase_counter % (60 - (0 < speed_add ? 30 : 0)) === 0) {
+                    speed_add = 0;
+                    phase_counter = 0;
+
                     listener.clear();
                     generated = generator.next();
 
