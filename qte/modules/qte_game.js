@@ -1,17 +1,23 @@
 window.SJ.module('qte_game', function (sj) {
-    var canvas, scene, currentLocation = 0, canvasWidth = 1.5, speed = 0.02, runAnimation, jumpAnimation,
+    var canvas, scene, currentLocation = 0, canvasWidth = 1.5, speed = 0.02, runAnimation, jumpAnimation, slideAnimation,
         loadAnimations = function () {
             var guy = scene.getObject('guy');
             runAnimation = sj.animation.create(guy);
             jumpAnimation = sj.animation.create(guy);
+			slideAnimation = sj.animation.create(guy);
             jumpAnimation.setStep(5);
-            jumpAnimation.setLooped(false);
-
+            jumpAnimation.setLooped(false);			
+            slideAnimation.setStep(5);
+            slideAnimation.setLooped(false);
+			
             for (var i = 0; i < 6; i++) {
-                runAnimation.addFrame(guy.texture, i / 11, 0, (i + 1) / 11, 1);
+                runAnimation.addFrame(guy.texture, i / 14, 0, (i + 1) / 14, 1);
             }
             for (i = 6; i < 10; i++) {
-                jumpAnimation.addFrame(guy.texture, i / 11, 0, (i + 1) / 11, 1);
+                jumpAnimation.addFrame(guy.texture, i / 14, 0, (i + 1) / 14, 1);
+            }
+			for (var i = 11; i < 13; i++) {
+                slideAnimation.addFrame(guy.texture, i / 14, 0, (i + 1) / 14, 1);
             }
         },
         run = function () {
@@ -52,8 +58,9 @@ window.SJ.module('qte_game', function (sj) {
                     runAnimation.setStep(1);
                 } else {
                     if (speed > 0.02) {
-                        currentAnimation = jumpAnimation;
-                        jumpAnimation.setCurrentFrame(0);
+                        currentAnimation = Math.random()> 0.5?slideAnimation:jumpAnimation;
+                        currentAnimation.setCurrentFrame(0);
+                        console.log("jump");
                     }
                     speed = 0.02;
                     runAnimation.setStep(2);
