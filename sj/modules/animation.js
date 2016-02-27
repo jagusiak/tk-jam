@@ -26,13 +26,13 @@ window.SJ.module('animation', function(sj) {
         };
 
         animation.setLooped = function (l) {
-            looped = l;
+            loopped = l;
         };
 
         animation.setCurrentFrame = function (f) {
             currentFrame = f | 0;
             currentStep = f*step;
-            stopeed = false;
+            stopped = false;
         };
 
         animation.play = function (s) {
