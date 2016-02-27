@@ -36,7 +36,9 @@ window.SJ.module('qte_game', function (sj) {
                 downObstacles = ['ob_0', 'ob_1', 'ob_2', 'ob_3'], upObstacles = [], j = 0, currentObstacle, done = false;
             canvas = sj.canvas;
             canvas.init();
-            scene = canvas.createScene('scene_1', sj.config('scenes', 'run'));
+            if (!scene) {
+                scene = canvas.createScene('scene_1', sj.config('scenes', 'run'));
+            }
             background = scene.getObject('background');
 
             progress = scene.getObject("progress");
@@ -80,7 +82,30 @@ window.SJ.module('qte_game', function (sj) {
                 if (leftSeconds < 0) {
                     stinkAnimation.play();
                     scene.getObject("stink").setVisible(true);
+                    scene.getObject("any_key").setVisible(true);
                     guy.setTexture(guy.texture, 13/14, 0, 1, 1);
+                    sj.input.onKeyDown(function() {
+                        frame = 0;
+                        scene.getObject("stink").setVisible(false);
+                        scene.getObject("any_key").setVisible(false);
+                        generateObstacle = true;
+                        for (var o in obstacles) {
+                            obstacles[o].setVisible(false);
+                        }
+                        currentObstacle = undefined;
+
+                        sj.input.onKeyDown(function (key) {
+                            listener.down(String.fromCharCode(key).toLowerCase(), frame);
+                        });
+
+                        sj.input.onKeyUp(function (key) {
+                            listener.up(String.fromCharCode(key).toLowerCase(), frame);
+                        });
+
+                        listener.resetScore();
+
+                        sj.numbers.set(numberObjects.tenth, numberObjects.unit, 0);
+                    });
                     return;
                 }
 

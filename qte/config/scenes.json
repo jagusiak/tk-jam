@@ -69,6 +69,26 @@
         "sounds": [],
         "textures": [],
         "objects": {
+            "any_key" : {
+                "position": {
+                    "x": 0.75,
+                    "y": 0.615,
+                    "z": 20
+                },
+                "rotation": 0.0,
+                "dimension": {
+                    "width": 0.4,
+                    "height": 0.1
+                },
+                "texture": {
+                    "name": "any_key",
+                    "top": 0,
+                    "left": 0,
+                    "right": 1,
+                    "bottom": 1
+                },
+                "visibility": false
+            },
             "background": {
                 "position": {
                     "x": 0.75,

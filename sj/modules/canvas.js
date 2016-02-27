@@ -142,8 +142,8 @@ window.SJ.module('canvas', function(sj) {
          */
         removeScene : function(name) {
             // handle not existing scene
-            if (scenes[name]) {
-                throw new Error("Scena name '" + name + "' alredy exists");
+            if (!scenes[name]) {
+                throw new Error("Scena name does not '" + name + "' alredy exist");
             }
             // handle removing running scene
             if (runningScene === name) {

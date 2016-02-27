@@ -129,6 +129,9 @@ window.SJ.module('listener', function (sj) {
         },
         'clear': function () {
             memory = {}, tryout = undefined;
+        },
+        resetScore : function () {
+            score = 0;
         }
     };
 });
