@@ -74,12 +74,12 @@ window.SJ.module('listener', function (sj) {
                     return sj.letters.STATE_CORRECT;
                 }
             case sj.arrows.TYPE_CHOICE:
-                if (1 === memlength && 1 === Object.keys(internal_filter(function (k) {
+                if (1 === memlength) {
+                    return 1 === Object.keys(internal_filter(function (k) {
                         return keys.indexOf(k) != -1;
-                    }, memory)).length) {
-                    return sj.letters.STATE_CORRECT;
-                } else {
-                    return sj.letters.STATE_INCORRECT;
+                    }, memory)).length ? sj.letters.STATE_CORRECT : sj.letters.STATE_INCORRECT;
+                } else if (0 >= memlength) {
+                    return sj.letters.STATE_IDLE;
                 }
             case sj.arrows.TYPE_SEQUENCE:
                 var time = internal_min(internal_filter(function (o) {
@@ -88,7 +88,9 @@ window.SJ.module('listener', function (sj) {
 
                 for (var k in keys) {
                     var next = memory[keys[k]];
-                    if (next === undefined || time > next) {
+                    if (next === undefined) {
+                        return sj.letters.STATE_IDLE;
+                    } else if (time > next) {
                         return sj.letters.STATE_INCORRECT;
                     } else if (undefined !== letter && k === letter) {
                         return sj.letters.STATE_PART
@@ -128,7 +130,7 @@ window.SJ.module('listener', function (sj) {
         'clear': function () {
             memory = {}, tryout = undefined;
         },
-        resetScore : function () {
+        resetScore: function () {
             score = 0;
         }
     };
