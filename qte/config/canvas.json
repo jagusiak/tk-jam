@@ -2,7 +2,7 @@
     "canvas_id" : "sj-canvas",
     "redner" : "h4renderer",
     "loader" : "loader",
-    "fps" : 30,
-    "width" : 1.0,
+    "fps" : 20,
+    "width" : 1.5,
     "height" : 1.0
 }

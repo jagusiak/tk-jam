@@ -10,13 +10,13 @@ window.SJ.module('qte_start', function(sj) {
             background = scene.getObject('background');
             guy = scene.getObject('guy');
             animation = sj.animation.create(guy);
-            animation.setStep(4);
+            animation.setStep(1);
             for (var i = 0; i < 6; i++) {
                 animation.addFrame(guy.texture, i/6, 0, (i+1)/6, 1);
             }
 
             scene.onFrame = function () {
-                background.setTexture(background.texture, background.textureLeft + 0.1, background.textureTop, background.textureRight + 0.1, background.textureBottom);
+                background.setTexture(background.texture, background.textureLeft + 0.2, background.textureTop, background.textureRight + 0.2, background.textureBottom);
                 animation.play();
             };
 

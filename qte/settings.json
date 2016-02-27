@@ -19,7 +19,7 @@
         }
     },
     "init": {
-        "module" : "qte_run",
+        "module" : "qte_start",
         "action" : "init"
     }
 }
