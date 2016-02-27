@@ -1,5 +1,5 @@
 window.SJ.module('qte_game', function (sj) {
-    var canvas, scene, currentLocation = 0, canvasWidth = 1.5, speed = 0.02, runAnimation, jumpAnimation, stinkAnimation,
+    var canvas, scene, currentLocation = 0, canvasWidth = 1.5, speed = 0.02, runAnimation, jumpAnimation, slideAnimation, stinkAnimation,
         loadAnimations = function () {
             var guy = scene.getObject('guy'), stink = scene.getObject('stink');
             runAnimation = sj.animation.create(guy);
@@ -8,12 +8,18 @@ window.SJ.module('qte_game', function (sj) {
             jumpAnimation.setStep(5);
             jumpAnimation.setLooped(false);
             stinkAnimation.setStep(4);
+            slideAnimation.setStep(5);
+            slideAnimation.setLooped(false);
+            slideAnimation = sj.animation.create(guy);
 
             for (var i = 0; i < 6; i++) {
-                runAnimation.addFrame(guy.texture, i / 11, 0, (i + 1) / 11, 1);
+                runAnimation.addFrame(guy.texture, i / 14, 0, (i + 1) / 14, 1);
             }
             for (i = 6; i < 10; i++) {
-                jumpAnimation.addFrame(guy.texture, i / 11, 0, (i + 1) / 11, 1);
+                jumpAnimation.addFrame(guy.texture, i / 14, 0, (i + 1) / 14, 1);
+            }
+			for (i = 11; i < 13; i++) {
+                slideAnimation.addFrame(guy.texture, i / 14, 0, (i + 1) / 14, 1);
             }
             for (i = 0; i < 2; i++) {
                 stinkAnimation.addFrame(stink.texture, i / 2, 0, (i + 1) / 2, 1);
@@ -69,8 +75,9 @@ window.SJ.module('qte_game', function (sj) {
                     runAnimation.setStep(1);
                 } else {
                     if (speed > 0.02) {
-                        currentAnimation = jumpAnimation;
-                        jumpAnimation.setCurrentFrame(0);
+                        currentAnimation = Math.random()> 0.5?slideAnimation:jumpAnimation;
+                        currentAnimation.setCurrentFrame(0);
+                        console.log("jump");
                     }
                     speed = 0.02;
                     runAnimation.setStep(2);
