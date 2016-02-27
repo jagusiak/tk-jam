@@ -4,8 +4,6 @@ window.SJ.module('qte_intro', function(sj) {
         'init' : function() {
             var canvas = sj.canvas, scene, animation, object, frame = 0;
 
-
-
             canvas.init();
 
             scene = canvas.createScene('welcome', sj.config('scenes', 'welcome'));
@@ -23,6 +21,10 @@ window.SJ.module('qte_intro', function(sj) {
 
                 animation.play();
             };
+
+            sj.input.onKeyDown(function(key) {
+                sj.qte_game.init();
+            });
 
             canvas.start();
             canvas.loadScene('welcome');
