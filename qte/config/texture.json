@@ -4,7 +4,8 @@
         "key_t" : "images/t.png",
         "key_e" : "images/e.png",
         "bg_1" : "images/bg_1.png",
-        "anim" : "images/agentrun.png",
-		"jp2" : "images/jp2.png"
+        "anim" : "images/agent.png",
+		"jump" : "images/agentjump.png",
+        "tree" : "images/tree.png"
     }
 }

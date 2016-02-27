@@ -77,14 +77,14 @@
                 },
                 "rotation": 0.0,
                 "dimension": {
-                    "width": 1.5,
+                    "width": 3,
                     "height": 1.0
                 },
                 "texture": {
                     "name": "bg_1",
                     "top": 0,
                     "left": 0,
-                    "right": 4,
+                    "right": 8,
                     "bottom": 1
                 },
                 "visibility": true
@@ -92,13 +92,13 @@
             "guy": {
                 "position": {
                     "x": 0.75,
-                    "y": 0.5,
+                    "y": 0.4,
                     "z": 3
                 },
                 "rotation": 0.0,
                 "dimension": {
-                    "width": 0.2,
-                    "height": 0.2
+                    "width": 0.4,
+                    "height": 0.4
                 },
                 "texture": {
                     "name": "anim",
@@ -109,25 +109,25 @@
                 },
                 "visibility": true
             },
-			"zoltamorda": {
+            "tree": {
                 "position": {
-                    "x": 1.0,
+                    "x": 0.75,
                     "y": 0.5,
-                    "z": 1
+                    "z": 3
                 },
                 "rotation": 0.0,
                 "dimension": {
-                    "width": 0.5,
-                    "height": 0.5
+                    "width": 0.15,
+                    "height": 0.15
                 },
                 "texture": {
-                    "name": "jp2",
+                    "name": "tree",
                     "top": 0,
-                    "left": 0,
-                    "right": 1,
+                    "left": 0.15,
+                    "right": 0.33,
                     "bottom": 1
                 },
-                "visibility": false
+                "visibility": true
             }
         }
     }
