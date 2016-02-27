@@ -15,9 +15,9 @@ window.SJ.module('qte_game', function (sj) {
             }
         },
         run = function () {
-            var background, obstacle, obstaclePosition, currentAnimation,
+            var background, obstacle, currentAnimation,
                 frame = 0,
-                letters = sj.letters, letter, letterObjects = [],
+                letters, letter, letterObjects = [],
                 listener,
                 generator, generated;
             canvas = sj.canvas;
@@ -25,21 +25,15 @@ window.SJ.module('qte_game', function (sj) {
             scene = canvas.createScene('scene_1', sj.config('scenes', 'run'));
             background = scene.getObject('background');
             obstacle = scene.getObject('tree');
-            obstaclePosition = -1;
-
-
-            obstacle.setPosition(obstaclePosition, obstacle.y, obstacle.z);
+            obstacle.setPosition(-1, obstacle.y, obstacle.z);
 
             generator = sj.qte_generator;
             generated = generator.next();
 
-            listener = sj.listener;
+            letters = sj.letters;
+            letterObjects = letters.init(scene);
 
-            for (var i = 0; i < 1; i++) {
-                var letterObj = scene.createObject('a');
-                letterObjects['a'] = letterObj;
-                letters.set(letterObj, i, i, i);
-            }
+            listener = sj.listener;
 
             loadAnimations();
 
@@ -60,7 +54,6 @@ window.SJ.module('qte_game', function (sj) {
                     if (speed > 0.02) {
                         currentAnimation = jumpAnimation;
                         jumpAnimation.setCurrentFrame(0);
-                        console.log("jump");
                     }
                     speed = 0.02;
                     runAnimation.setStep(2);
@@ -72,13 +65,25 @@ window.SJ.module('qte_game', function (sj) {
                     obstacle.setPosition(-0.5, obstacle.y, obstacle.z);
                 }
 
-                for (var obj in letterObjects) {
-                    letters.state(letterObjects[obj], listener.partial('a'));
+                for (var obj in generated.keys) {
+                    var ident = generated.keys[obj];
+                    letters.state(letterObjects[ident], listener.partial(generated, ident));
                 }
 
-                if (frame % 30 === 0) {
+                if (frame % 60 === 0) {
                     listener.clear();
                     generated = generator.next();
+
+                    for (var obj in sj.config('keys', 'keys')) {
+                        var ind = generated.keys.indexOf(obj), letter = letterObjects[obj];
+                        if (ind != -1) {
+                            letters.position(letter, ind);
+
+                            letter.setVisible(true);
+                        } else {
+                            letter.setVisible(false);
+                        }
+                    }
                 }
             };
 

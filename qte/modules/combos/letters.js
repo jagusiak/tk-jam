@@ -4,15 +4,7 @@ window.SJ.module('letters', function (sj) {
         STATE_IDLE: 0,
         STATE_CORRECT: 1,
         STATE_INCORRECT: 2,
-
-        KEY_A: 0, KEY_B: 1, KEY_C: 2,
-        KEY_D: 3, KEY_E: 4, KEY_F: 5,
-        KEY_G: 7, KEY_H: 8, KEY_I: 9,
-        KEY_J: 10, KEY_K: 11, KEY_L: 12,
-        KEY_M: 13, KEY_N: 14, KEY_O: 15,
-        KEY_P: 16, KEY_R: 17, KEY_S: 18,
-        KEY_T: 19, KEY_U: 20, KEY_W: 21,
-        KEY_X: 22, KEY_Y: 23, KEY_Z: 24,
+        STATE_PART: 3,
 
         POS_TOP: 0,
         POS_MIDDLE: 1,
@@ -21,15 +13,25 @@ window.SJ.module('letters', function (sj) {
         POS_OFFSET: 0.10,
 
         BASE_X: 0.75,
-        BASE_Y: 0.75,
+        BASE_Y: 0.728,
+        BASE_Z: 10,
 
-        DIVIDER: 0.33,
+        DIVIDER_X: 0.25,
+        DIVIDER_Y: 0.03846,
 
-        'init': function () {
+        'init': function (scene) {
+            var objects = {}, iterator = 0;
+            for (var i in sj.config('keys', 'keys')) {
+                var obj = scene.createObject(i);
 
+                objects[i] = obj;
+                sj.letters.set(obj, iterator++, sj.letters.STATE_IDLE, 0);
+            }
+
+            return objects;
         },
         'set': function (object, letter, state, position) {
-            var letters, left = state * sj.letters.DIVIDER, top = letter * sj.letters.DIVIDER;
+            var letters, left = state * sj.letters.DIVIDER_X, top = letter * sj.letters.DIVIDER_Y;
 
             sj.texture.load('letters');
 
@@ -37,21 +39,18 @@ window.SJ.module('letters', function (sj) {
                 sj.texture.get('letters'),
                 left,
                 top,
-                left + sj.letters.DIVIDER,
-                top + sj.letters.DIVIDER);
+                left + sj.letters.DIVIDER_X,
+                top + sj.letters.DIVIDER_Y);
             object.setDimension(0.09, 0.09);
-            object.setPosition(0.75, 0.728 + position * sj.letters.POS_OFFSET, 10);
+            object.setPosition(0.75, 0.728 + position * sj.letters.POS_OFFSET, sj.letters.BASE_Z);
             object.setVisible(true);
         },
         'position': function (object, position) {
-            object.setPosition(object.x, position * sj.letters.POS_OFFSET, object.z);
+            object.setPosition(sj.letters.BASE_X, sj.letters.BASE_Y + position * sj.letters.POS_OFFSET, sj.letters.BASE_Z);
         },
         'state': function (object, state) {
-            var left = state * sj.letters.DIVIDER;
-
-            console.log(left);
-
-            object.setTexture(object.texture, left, object.top, left + sj.letters.DIVIDER, object.bottom);
+            var left = state * sj.letters.DIVIDER_X;
+            object.setTexture(object.texture, left, object.textureTop, left + sj.letters.DIVIDER_X, object.textureBottom);
         }
     };
 

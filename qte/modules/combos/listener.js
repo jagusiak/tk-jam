@@ -45,6 +45,45 @@ window.SJ.module('listener', function (sj) {
         return filtered;
     };
 
+    var internal_check = function (generated) {
+        var keys = generated.keys, length = keys.length, memkeys = Object.keys(memory), memlength = memkeys.length;
+        switch (generated.type) {
+            case 'single':
+            case 'pair':
+            case 'triple':
+                var filtered = internal_filter(function (k) {
+                    return keys.indexOf(k) != -1;
+                }, memory), min = internal_min(memory), max = internal_max(memory);
+
+                return memlength === length && length === Object.keys(filtered).length
+                    && undefined !== min && undefined !== max
+                    && 1 >= Math.abs(max - min);
+            case 'choice':
+                return 1 < length && 1 === memlength && 1 === Object.keys(internal_filter(function (k) {
+                        return keys.indexOf(k) != -1;
+                    }, memory)).length;
+            case 'sequence':
+                var time = internal_min(internal_filter(function (o) {
+                    return keys.indexOf(o) != -1;
+                }, memory));
+
+                for (var k in keys) {
+                    var next = memory[keys[k]];
+                    if (next === undefined || time > next) {
+                        return false;
+                    }
+
+                    time = next;
+                }
+
+                return memlength === length;
+            default:
+                return false
+        }
+
+        return false;
+    };
+
     return {
         'down': function (key, time) {
             memory[key] = -1;
@@ -55,45 +94,18 @@ window.SJ.module('listener', function (sj) {
             }
         },
         'check': function (generated) {
-            var keys = generated.keys, length = keys.length, memkeys = Object.keys(memory), memlength = memkeys.length;
-            switch (generated.type) {
-                case 'single':
-                case 'pair':
-                case 'triple':
-                    var filtered = internal_filter(function (k) {
-                        return keys.indexOf(k) != -1;
-                    }, memory), min = internal_min(memory), max = internal_max(memory);
-
-                    return memlength === length && length === Object.keys(filtered).length
-                        && undefined !== min && undefined !== max
-                        && 0 === Math.abs(max - min);
-                case 'choice':
-                    return 1 < length && 1 === memlength && 1 === Object.keys(internal_filter(function (k) {
-                            return keys.indexOf(k) != -1;
-                        }, memory)).length;
-                case 'sequence':
-                    var time = internal_min(internal_filter(function (o) {
-                        return keys.indexOf(o) != -1;
-                    }, memory));
-
-                    for (var k in keys) {
-                        var next = memory[keys[k]];
-                        if (next === undefined || time > next) {
-                            return false;
-                        }
-
-                        time = next;
-                    }
-
-                    return memlength === length;
-                default:
-                    return false
-            }
-
-            return false;
+            return internal_check(generated);
         },
-        'partial': function (letter) {
-            return undefined !== memory[letter] && -1 !== memory[letter] ? sj.letters.STATE_CORRECT : sj.letters.STATE_INCORRECT;
+        'partial': function (generated, letter) {
+            if (internal_check(generated)) {
+                return sj.letters.STATE_CORRECT;
+            } else if (undefined === memory[letter]) {
+                return sj.letters.STATE_IDLE;
+            } else if (-1 === memory[letter]) {
+                return sj.letters.STATE_PART;
+            } else {
+                return sj.letters.STATE_INCORRECT;
+            }
         },
         'clear': function () {
             memory = {};
