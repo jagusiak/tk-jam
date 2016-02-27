@@ -114,13 +114,17 @@ window.SJ.module('listener', function (sj) {
                 memory[key] = time;
             }
         },
-        'check': function (generated, letter) {
+        'check': function (generated, letter, objects) {
             var checked = internal_check(generated);
             if (tryout !== checked && sj.letters.STATE_CORRECT === checked) {
                 console.log('S: ' + score + ' | +: ' + generated.points);
 
+                objects[score].setVisible(false);
+
                 score += generated.points;
                 tryout = checked;
+
+                objects[score].setVisible(score);
             }
 
             return checked;
