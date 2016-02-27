@@ -51,7 +51,8 @@ window.SJ.module('letters', function (sj) {
 
             console.log(left);
 
-            object.setTexture(object.texture, left, object.top, left + sj.letters.DIVIDER, object.bottom);
+            object.setTexture(object.texture, left, object.textureTop, left + sj.letters.DIVIDER, object.textureBottom);
+
         }
     };
 

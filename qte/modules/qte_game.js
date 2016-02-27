@@ -37,7 +37,7 @@ window.SJ.module('qte_game', function (sj) {
 
             for (var i = 0; i < 1; i++) {
                 var letterObj = scene.createObject('a');
-                letterObjects['a'] = letterObj;
+                letterObjects.a = letterObj;
                 letters.set(letterObj, i, i, i);
             }
 
@@ -60,7 +60,6 @@ window.SJ.module('qte_game', function (sj) {
                     if (speed > 0.02) {
                         currentAnimation = jumpAnimation;
                         jumpAnimation.setCurrentFrame(0);
-                        console.log("jump");
                     }
                     speed = 0.02;
                     runAnimation.setStep(2);
