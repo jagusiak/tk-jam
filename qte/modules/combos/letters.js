@@ -5,18 +5,6 @@ window.SJ.module('letters', function (sj) {
         STATE_CORRECT: 1,
         STATE_INCORRECT: 2,
 
-        KEYS: {
-            KEY_A: 0, KEY_B: 1, KEY_C: 2,
-            KEY_D: 3, KEY_E: 4, KEY_F: 5,
-            KEY_G: 6, KEY_H: 7, KEY_I: 8,
-            KEY_J: 9, KEY_K: 10, KEY_L: 11,
-            KEY_M: 12, KEY_N: 13, KEY_O: 14,
-            KEY_P: 15, KEY_R: 16, KEY_S: 17,
-            KEY_T: 18, KEY_U: 19, KEY_W: 21,
-            KEY_X: 21, KEY_Y: 22, KEY_Z: 23,
-            KEY_V: 24, KEY_Q: 25,
-        },
-
         POS_TOP: 0,
         POS_MIDDLE: 1,
         POS_BOTTOM: 2,
@@ -26,16 +14,15 @@ window.SJ.module('letters', function (sj) {
         BASE_X: 0.75,
         BASE_Y: 0.75,
 
-        DIVIDER: 0.04,
+        DIVIDER: 0.33,
 
         'init': function (scene) {
-            var objects = {};
-
-            for (var i in sj.letters.KEYS) {
+            var objects = {}, iterator = 0;
+            for (var i in sj.config('keys', 'keys')) {
                 var obj = scene.createObject(i);
 
                 objects[i] = obj;
-                sj.letters.set(obj, i, sj.letters.STATE_IDLE, 0);
+                sj.letters.set(obj, iterator++, sj.letters.STATE_IDLE, 0);
             }
 
             return objects;
