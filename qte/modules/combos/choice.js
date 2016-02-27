@@ -10,7 +10,7 @@ window.SJ.module('choice', function (sj) {
             }
 
             return {
-                type: 'choice',
+                type: sj.arrows.TYPE_CHOICE,
                 keys: [
                     a, b
                 ],

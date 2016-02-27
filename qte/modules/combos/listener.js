@@ -48,9 +48,9 @@ window.SJ.module('listener', function (sj) {
     var internal_check = function (generated, letter) {
         var keys = generated.keys, length = keys.length, memkeys = Object.keys(memory), memlength = memkeys.length;
         switch (generated.type) {
-            case 'single':
-            case 'pair':
-            case 'triple':
+            case sj.arrows.TYPE_SINGLE:
+            case sj.arrows.TYPE_PAIR:
+            case sj.arrows.TYPE_TRIPLE:
                 var filtered = internal_filter(function (k) {
                         return keys.indexOf(k) != -1;
                     }, memory), min = internal_min(memory), max = internal_max(memory),
@@ -73,7 +73,7 @@ window.SJ.module('listener', function (sj) {
                 } else {
                     return sj.letters.STATE_CORRECT;
                 }
-            case 'choice':
+            case sj.arrows.TYPE_CHOICE:
                 if (1 === memlength && 1 === Object.keys(internal_filter(function (k) {
                         return keys.indexOf(k) != -1;
                     }, memory)).length) {
@@ -81,7 +81,7 @@ window.SJ.module('listener', function (sj) {
                 } else {
                     return sj.letters.STATE_INCORRECT;
                 }
-            case 'sequence':
+            case sj.arrows.TYPE_SEQUENCE:
                 var time = internal_min(internal_filter(function (o) {
                     return keys.indexOf(o) != -1;
                 }, memory));
@@ -117,8 +117,6 @@ window.SJ.module('listener', function (sj) {
         'check': function (generated, letter, objects) {
             var checked = internal_check(generated);
             if (tryout !== checked && sj.letters.STATE_CORRECT === checked) {
-                console.log('S: ' + score + ' | +: ' + generated.points);
-
                 score += generated.points;
                 tryout = checked;
 

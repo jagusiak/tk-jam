@@ -3,18 +3,22 @@ window.SJ.module('sequence', function(sj) {
         'next' : function () {
             var keys = sj.config('keys', 'keys'),
                 r = sj.random,
-                a = r.get(), b = r.get();
+                a = r.get(), b = r.get(), c = r.get();
 
             while(b === a) {
                 b = r.get();
             }
 
+            while(c === a || c === b) {
+                c = r.get();
+            }
+
             return {
-                type: 'sequence',
+                type: sj.arrows.TYPE_SEQUENCE,
                 keys: [
-                    a, b
+                    a, b, c
                 ],
-                points: 2
+                points: 4
             };
         }
     };

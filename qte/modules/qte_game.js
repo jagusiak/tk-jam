@@ -14,13 +14,13 @@ window.SJ.module('qte_game', function (sj) {
             slideAnimation = sj.animation.create(guy);
 
             for (var i = 0; i < 6; i++) {
-                runAnimation.addFrame(guy.texture, i / 14, 0, (i + 1) / 14, 1);
+                runAnimation.addFrame(guy.texture, i / 16, 0, (i + 1) / 16, 1);
             }
             for (i = 6; i < 10; i++) {
-                jumpAnimation.addFrame(guy.texture, i / 14, 0, (i + 1) / 14, 1);
+                jumpAnimation.addFrame(guy.texture, i / 16, 0, (i + 1) / 16, 1);
             }
-			for (i = 11; i < 13; i++) {
-                slideAnimation.addFrame(guy.texture, i / 14, 0, (i + 1) / 14, 1);
+            for (i = 11; i < 13; i++) {
+                slideAnimation.addFrame(guy.texture, i / 16, 0, (i + 1) / 16, 1);
             }
             for (i = 0; i < 2; i++) {
                 stinkAnimation.addFrame(stink.texture, i / 2, 0, (i + 1) / 2, 1);
@@ -31,6 +31,7 @@ window.SJ.module('qte_game', function (sj) {
                 frame = 0, phase_counter = 0,
                 letters, letter, letterObjects = [],
                 numbers, numberObjects = [],
+                arrows, arrowObject, arrowAnimation,
                 listener,
                 generator, generated, progress, generateObstacle = true, obstacles = [],
                 downObstacles = ['ob_0', 'ob_1', 'ob_2', 'ob_3'], upObstacles = [], j = 0, currentObstacle, done = false;
@@ -56,14 +57,17 @@ window.SJ.module('qte_game', function (sj) {
                 j++;
             }
 
+            numbers = sj.numbers;
+            numberObjects = numbers.init(scene);
+
             generator = sj.qte_generator;
             generated = generator.next();
 
             letters = sj.letters;
             letterObjects = letters.init(scene);
 
-            numbers = sj.numbers;
-            numberObjects = numbers.init(scene);
+            arrows = sj.arrows;
+            arrowObject = arrows.init(scene);
 
             listener = sj.listener;
 
@@ -72,18 +76,18 @@ window.SJ.module('qte_game', function (sj) {
             currentAnimation = runAnimation;
 
             scene.onFrame = function () {
-                var leftSeconds = 10 - Math.floor(frame/25), select;
-                frame++; phase_counter++;
+                var leftSeconds = 10 - Math.floor(frame / 25), select;
+                frame++;
 
-                progress.setTexture(progress.texture, 0, 0, leftSeconds/10,1);
-                progress.setPosition(0.02*leftSeconds + 0.03, 0.03, 10);
-                progress.setDimension(0.04*leftSeconds, 0.04);
+                progress.setTexture(progress.texture, 0, 0, leftSeconds / 10, 1);
+                progress.setPosition(0.02 * leftSeconds + 0.03, 0.03, 10);
+                progress.setDimension(0.04 * leftSeconds, 0.04);
 
                 if (leftSeconds < 0) {
                     stinkAnimation.play();
                     scene.getObject("stink").setVisible(true);
                     scene.getObject("any_key").setVisible(true);
-                    guy.setTexture(guy.texture, 13/14, 0, 1, 1);
+                    guy.setTexture(guy.texture, 14/16, 0, 15/16, 1);
                     sj.input.onKeyDown(function() {
                         frame = 0;
                         scene.getObject("stink").setVisible(false);
@@ -110,9 +114,9 @@ window.SJ.module('qte_game', function (sj) {
                 }
 
                 if (generateObstacle) {
-                    select = Math.floor(Math.random()*obstacles.length);
+                    select = Math.floor(Math.random() * obstacles.length);
                     while (obstacles[select].visible) {
-                        select = Math.floor(Math.random()*obstacles.length);
+                        select = Math.floor(Math.random() * obstacles.length);
                     }
                     var o = obstacles[select];
                     o.setPosition(frame < 5 ? -0.7 : -0.4, o.y, o.z);
@@ -127,19 +131,10 @@ window.SJ.module('qte_game', function (sj) {
                 }
 
 
-                // if (obstacle.x > 0.2 && obstacle.x < 0.5) {
-                //     speed = 0.05;
-                //     runAnimation.setStep(1);
-                // } else {
-                //     if (speed > 0.02) {
-                //         currentAnimation = jumpAnimation;
-                //         currentAnimation.setCurrentFrame(0);
-                //     }
-                //     speed = 0.02;
-                //     runAnimation.setStep(2);
-                // }
                 currentLocation += speed;
-
+                if (undefined !== arrowAnimation) {
+                    arrowAnimation.play();
+                }
 
                 for (select in obstacles) {
                     var ob = obstacles[select];
@@ -154,6 +149,8 @@ window.SJ.module('qte_game', function (sj) {
 
                             listener.clear();
                             generated = generator.next();
+
+                            arrowAnimation = arrows.set(arrowObject, generated.type);
 
                             for (var obj in sj.config('keys', 'keys')) {
                                 var ind = generated.keys.indexOf(obj), letter = letterObjects[obj];
@@ -188,24 +185,18 @@ window.SJ.module('qte_game', function (sj) {
                 if (done) {
                     speed = 0.06;
                 }
-                //obstacle.setPosition(obstacle.x + speed + speed_add, obstacle.y, obstacle.z);
-
-                // if (obstacle.x > 1.8) {
-                //     obstacle.setPosition(-0.5, obstacle.y, obstacle.z);
-                // }
-                //
 
                 if (currentObstacle) {
-                for (var obj in generated.keys) {
-                    var ident = generated.keys[obj], check = listener.check(generated, ident, numberObjects);
+                    for (var obj in generated.keys) {
+                        var ident = generated.keys[obj], check = listener.check(generated, ident, numberObjects);
 
-                    letters.state(letterObjects[ident], check);
+                        letters.state(letterObjects[ident], check);
 
-                    if(sj.letters.STATE_CORRECT === check){
-                         done = true;
-                         listener.clear();
+                        if (sj.letters.STATE_CORRECT === check) {
+                            done = true;
+                            listener.clear();
+                        }
                     }
-                }
                 }
 
             };

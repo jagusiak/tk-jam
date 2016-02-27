@@ -12,7 +12,7 @@ window.SJ.module('qte_intro', function(sj) {
             animation = sj.animation.create(object);
 
             for (var i = 0; i < 6; i++) {
-                animation.addFrame(object.texture, i / 14, 0, (i + 1) / 14, 1);
+                animation.addFrame(object.texture, i / 16, 0, (i + 1) / 16, 1);
             }
 
             scene.onFrame = function () {

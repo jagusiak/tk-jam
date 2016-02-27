@@ -4,7 +4,7 @@ window.SJ.module('single', function(sj) {
             var keys = sj.config('keys', 'keys'),
                 r = sj.random;
             return {
-                type: 'single',
+                type: sj.arrows.TYPE_SINGLE,
                 keys: [
                     r.get()
                 ],

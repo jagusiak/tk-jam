@@ -28,7 +28,6 @@ window.SJ.module('qte_run', function(sj) {
                     listener.clear();
 
                     generated = generator.next();
-                    console.log('Type: ' + generated.type + ' | Setting: ' + generated.keys);
                 }
             };
 

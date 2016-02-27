@@ -44,7 +44,7 @@ window.SJ.module('numbers', function (sj) {
                     1
                 );
                 tenth.setDimension(0.09, 0.09);
-                tenth.setPosition(1.25, 0.10, sj.letters.BASE_Z);
+                tenth.setPosition(1.33, 0.10, sj.letters.BASE_Z);
                 tenth.setVisible(true);
             } else {
                 tenth.setVisible(false);
@@ -59,7 +59,7 @@ window.SJ.module('numbers', function (sj) {
                 1
             );
             unit.setDimension(0.09, 0.09);
-            unit.setPosition(1.3, 0.10, sj.letters.BASE_Z);
+            unit.setPosition(1.4, 0.10, sj.letters.BASE_Z);
             unit.setVisible(true);
         }
     };

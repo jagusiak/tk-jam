@@ -10,7 +10,7 @@ window.SJ.module('pair', function(sj) {
             }
 
             return {
-                type: 'pair',
+                type: sj.arrows.TYPE_PAIR,
                 keys: [
                     a, b
                 ],

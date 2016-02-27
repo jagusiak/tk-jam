@@ -14,7 +14,7 @@ window.SJ.module('triple', function (sj) {
             }
 
             return {
-                type: 'triple',
+                type: sj.arrows.TYPE_TRIPLE,
                 keys: [
                     a, b, c
                 ],

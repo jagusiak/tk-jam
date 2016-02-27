@@ -13,7 +13,8 @@
         "sequence": "APP_NAME/modules/combos/sequence",
         "random": "APP_NAME/modules/combos/random",
         "listener": "APP_NAME/modules/combos/listener",
-        "numbers": "APP_NAME/modules/combos/numbers"
+        "numbers": "APP_NAME/modules/combos/numbers",
+        "arrows": "APP_NAME/modules/combos/arrows"
     },
     "configuration": {
         "scenes": {
