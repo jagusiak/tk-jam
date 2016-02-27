@@ -1,16 +1,25 @@
 {
     "modules": {
         "qte_start" : "APP_NAME/modules/qte_start",
-        "qte_run" : "APP_NAME/modules/qte_run"
+        "qte_run" : "APP_NAME/modules/qte_run",
+        "qte_generator" : "APP_NAME/modules/qte_generator",
+        "single" : "APP_NAME/modules/combos/single",
+        "pair" : "APP_NAME/modules/combos/pair",
+        "choice" : "APP_NAME/modules/combos/choice",
+        "triple" : "APP_NAME/modules/combos/triple"
     },
     "configuration": {
         "scenes" : {
             "scope" : "APP",
             "file" : "scenes"
+        },
+        "keys" : {
+            "scope" : "APP",
+            "file" : "keys"
         }
     },
     "init": {
-        "module" : "qte_start",
+        "module" : "qte_run",
         "action" : "init"
     }
 }

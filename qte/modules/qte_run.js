@@ -3,15 +3,14 @@ window.SJ.module('qte_run', function(sj) {
     return {
         'init' : function() {
             var canvas = sj.canvas,
-                scene,
-                keys = ['q', 'e', 't'],
+                scene, single = sj.single,
+                keys,
                 keyObjects = {},
                 pressed = {},
                 frameCounter = 0;
 
             canvas.init();
             scene = canvas.createScene('scene_1', sj.config('scenes', 'keys'));
-
 
             for (var i in keys) {
                 var keyName = keys[i];
@@ -20,6 +19,7 @@ window.SJ.module('qte_run', function(sj) {
 
             scene.onFrame = function () {
                 frameCounter++;
+
                 for (var i in keys) {
                     keyObjects[keys[i]].setVisible((Math.floor(frameCounter/200) % 3) == i);
                 }

@@ -97,8 +97,8 @@ window.SJ = (function () {
      */
     function init(appName) {
         app = (!appName ? 'app' : appName);
-        window.SJ.settings = {"configuration": {"canvas": {"scope": "FULL", "file": "canvas"}, "texture": {"scope": "APP", "file": "texture"}, "sound": {"scope": "APP", "file": "sound"}, "scenes": {"scope": "APP", "file": "scenes"}}, "modules": {"utils": "sj/modules/utils", "h4render": "sj/modules/h4render", "texture": "sj/modules/texture", "canvasobject": "sj/modules/canvasobject", "scene": "sj/modules/scene", "canvas": "sj/modules/canvas", "sound": "sj/modules/sound", "input": "sj/modules/input", "animation": "sj/modules/animation", "default": "sj/modules/default", "loader": "sj/modules/loader", "qte_start": "APP_NAME/modules/qte_start", "qte_run": "APP_NAME/modules/qte_run"}, "init": {"module": "qte_start", "action": "init"}};
-window.SJ.config = (function(configuration) {var data = configuration; return function(name, item) {return data[name][item]; };}({"sound": {}, "scenes": {"keys": {"textures": [], "objects": {"key_t": {"visibility": true, "dimension": {"width": 0.2, "height": 0.2}, "texture": {"top": 0, "bottom": 1, "right": 1, "name": "key_t", "left": 0}, "position": {"y": 0.7, "x": 0.5, "z": 3}, "rotation": 0.0}, "key_q": {"visibility": true, "dimension": {"width": 0.2, "height": 0.2}, "texture": {"top": 0, "bottom": 1, "right": 1, "name": "key_q", "left": 0}, "position": {"y": 0.7, "x": 0.2, "z": 3}, "rotation": 0.0}, "key_e": {"visibility": true, "dimension": {"width": 0.2, "height": 0.2}, "texture": {"top": 0, "bottom": 1, "right": 1, "name": "key_e", "left": 0}, "position": {"y": 0.7, "x": 0.8, "z": 3}, "rotation": 0.0}}, "sounds": []}, "run": {"textures": [], "objects": {"guy": {"visibility": true, "dimension": {"width": 0.2, "height": 0.2}, "texture": {"top": 0, "bottom": 1, "right": 0.09, "name": "anim", "left": 0}, "position": {"y": 0.5, "x": 0.75, "z": 2}, "rotation": 0.0}, "background": {"visibility": true, "dimension": {"width": 1.5, "height": 1.0}, "texture": {"top": 0, "bottom": 1, "right": 4, "name": "bg_1", "left": 0}, "position": {"y": 0.5, "x": 0.75, "z": 1}, "rotation": 0.0}}, "sounds": []}}, "texture": {"textures": {"key_t": "images/t.png", "bg_1": "images/bg_1.png", "key_q": "images/q.png", "anim": "images/anim.png", "key_e": "images/e.png"}}, "canvas": {"width": 1.5, "fps": 20, "redner": "h4renderer", "height": 1.0, "canvas_id": "sj-canvas", "loader": "loader"}}));
+        window.SJ.settings = {"configuration": {"canvas": {"scope": "FULL", "file": "canvas"}, "texture": {"scope": "APP", "file": "texture"}, "sound": {"scope": "APP", "file": "sound"}, "scenes": {"scope": "APP", "file": "scenes"}}, "modules": {"utils": "sj/modules/utils", "h4render": "sj/modules/h4render", "texture": "sj/modules/texture", "canvasobject": "sj/modules/canvasobject", "scene": "sj/modules/scene", "canvas": "sj/modules/canvas", "sound": "sj/modules/sound", "input": "sj/modules/input", "animation": "sj/modules/animation", "default": "sj/modules/default", "loader": "sj/modules/loader", "qte_start": "APP_NAME/modules/qte_start", "qte_run": "APP_NAME/modules/qte_run", "qte_generator": "APP_NAME/modules/qte_generator"}, "init": {"module": "qte_run", "action": "init"}};
+window.SJ.config = (function(configuration) {var data = configuration; return function(name, item) {return data[name][item]; };}({"sound": {}, "canvas": {"height": 1.0, "width": 1.0, "fps": 30, "loader": "loader", "canvas_id": "sj-canvas", "redner": "h4renderer"}, "scenes": {"keys": {"textures": [], "sounds": [], "objects": {"key_e": {"position": {"y": 0.7, "x": 0.8, "z": 3}, "rotation": 0.0, "visibility": true, "dimension": {"width": 0.2, "height": 0.2}, "texture": {"bottom": 1, "top": 0, "right": 1, "name": "key_e", "left": 0}}, "key_t": {"position": {"y": 0.7, "x": 0.5, "z": 3}, "rotation": 0.0, "visibility": true, "dimension": {"width": 0.2, "height": 0.2}, "texture": {"bottom": 1, "top": 0, "right": 1, "name": "key_t", "left": 0}}, "key_q": {"position": {"y": 0.7, "x": 0.2, "z": 3}, "rotation": 0.0, "visibility": true, "dimension": {"width": 0.2, "height": 0.2}, "texture": {"bottom": 1, "top": 0, "right": 1, "name": "key_q", "left": 0}}}}, "run": {"textures": [], "sounds": [], "objects": {"guy": {"position": {"y": 0.5, "x": 0.75, "z": 2}, "rotation": 0.0, "visibility": true, "dimension": {"width": 0.2, "height": 0.2}, "texture": {"bottom": 1, "top": 0, "right": 0.09, "name": "anim", "left": 0}}, "background": {"position": {"y": 0.5, "x": 0.75, "z": 1}, "rotation": 0.0, "visibility": true, "dimension": {"width": 1.5, "height": 1.0}, "texture": {"bottom": 1, "top": 0, "right": 4, "name": "bg_1", "left": 0}}}}}, "texture": {"textures": {"key_e": "images/e.png", "key_t": "images/t.png", "anim": "images/anim.png", "key_q": "images/q.png", "bg_1": "images/bg_1.png"}}}));
 window.SJ.module = function(name, code) { if (!window.SJ.settings.modules[name]) {console.error('Module ' + name + ' not found in settings');} if (window.SJ[name]) {console.error('Cannot reserve name ' + name);} window.SJ[name] = code(window.SJ);};
 window.SJ.module('utils', function(sj) {
     
@@ -1149,6 +1149,62 @@ window.SJ.module('qte_run', function(sj) {
         'init' : function() {
             var canvas = sj.canvas,
                 scene,
+                keys,
+                keyObjects = {},
+                pressed = {},
+                frameCounter = 0;
+
+            canvas.init();
+            scene = canvas.createScene('scene_1', sj.config('scenes', 'keys'));
+
+            keys = sj.config('keys', 'keys');
+
+            for (var i in keys) {
+                var keyName = keys[i];
+                keyObjects[keyName] = scene.getObject('key_' + keyName);
+            }
+
+            scene.onFrame = function () {
+                frameCounter++;
+
+                for (var i in keys) {
+                    keyObjects[keys[i]].setVisible((Math.floor(frameCounter/200) % 3) == i);
+                }
+            };
+
+            sj.input.onKeyDown(function(key) {
+                var code = String.fromCharCode(key).toLowerCase(), object = keyObjects[code];
+                if (object && !pressed[code]) {
+                    object.setDimension(object.width, object.height/2);
+                    object.setPosition(object.x, object.y+object.height/2, object.z);
+                    pressed[code] = true;
+                }
+            });
+
+            sj.input.onKeyUp(function(key) {
+                var code = String.fromCharCode(key).toLowerCase(), object = keyObjects[code];
+                if (object) {
+                    object.setPosition(object.x, object.y-object.height/2, object.z);
+                    object.setDimension(object.width, object.height*2);
+                    pressed[code] = false;
+                }
+            });
+
+            canvas.start();
+            canvas.loadScene('scene_1');
+        }
+    };
+
+});
+
+window.SJ.module('qte_generator', function(sj) {
+
+
+
+    return {
+        'init' : function() {
+            var canvas = sj.canvas,
+                scene,
                 keys = ['q', 'e', 't'],
                 keyObjects = {},
                 pressed = {},
@@ -1165,6 +1221,7 @@ window.SJ.module('qte_run', function(sj) {
 
             scene.onFrame = function () {
                 frameCounter++;
+
                 for (var i in keys) {
                     keyObjects[keys[i]].setVisible((Math.floor(frameCounter/200) % 3) == i);
                 }
