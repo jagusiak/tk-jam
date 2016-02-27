@@ -3,7 +3,7 @@ window.SJ.module('qte_run', function(sj) {
     return {
         'init' : function() {
             var canvas = sj.canvas,
-                scene, single = sj.single,
+                scene, generator = sj.qte_generator,
                 keys,
                 keyObjects = {},
                 pressed = {},
@@ -19,6 +19,8 @@ window.SJ.module('qte_run', function(sj) {
 
             scene.onFrame = function () {
                 frameCounter++;
+
+                console.log(generator.next());
 
                 for (var i in keys) {
                     keyObjects[keys[i]].setVisible((Math.floor(frameCounter/200) % 3) == i);

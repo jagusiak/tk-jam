@@ -1,23 +1,24 @@
 window.SJ.module('triple', function(sj) {
     return {
         'next' : function () {
-            var keys = sj.config('keys', 'keys');
-
-            var a = keys[keys.length * Math.random() << 0];
-            var b = keys[keys.length * Math.random() << 0];
-            var c = keys[keys.length * Math.random() << 0];
+            var keys = sj.config('keys', 'keys'),
+                r = sj.random,
+                a = r.get(), b = r.get(), c = r.get();
 
             while(b === a) {
-                b = keys[keys.length * Math.random() << 0];
+                b = r.get();
             }
 
             while(c === a || c === b) {
-                c = keys[keys.length * Math.random() << 0];
+                c = r.get();
             }
 
-            return [
-                a, b, c
-            ];
+            return {
+                type: 'triple',
+                keys: [
+                    a, b, c
+                ]
+            }
         }
     };
 });

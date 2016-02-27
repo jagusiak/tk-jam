@@ -1,18 +1,20 @@
 window.SJ.module('choice', function(sj) {
     return {
         'next' : function () {
-            var keys = sj.config('keys', 'keys');
-
-            var a = keys[keys.length * Math.random() << 0];
-            var b = keys[keys.length * Math.random() << 0];
+            var keys = sj.config('keys', 'keys'),
+                r = sj.random,
+                a = r.get(), b = r.get();
 
             while(b === a) {
-                b = keys[keys.length * Math.random() << 0];
+                b = r.get();
             }
 
-            return [
-                a, b
-            ];
+            return {
+                type: 'choice',
+                keys: [
+                    a, b
+                ]
+            };
         }
     };
 });

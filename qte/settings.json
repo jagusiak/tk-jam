@@ -6,7 +6,9 @@
         "single" : "APP_NAME/modules/combos/single",
         "pair" : "APP_NAME/modules/combos/pair",
         "choice" : "APP_NAME/modules/combos/choice",
-        "triple" : "APP_NAME/modules/combos/triple"
+        "triple" : "APP_NAME/modules/combos/triple",
+        "sequence" : "APP_NAME/modules/combos/sequence",
+        "random" : "APP_NAME/modules/combos/random"
     },
     "configuration": {
         "scenes" : {
