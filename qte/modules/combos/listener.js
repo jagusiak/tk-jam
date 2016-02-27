@@ -92,6 +92,9 @@ window.SJ.module('listener', function (sj) {
 
             return false;
         },
+        'partial': function (letter) {
+            return undefined !== memory[letter] && -1 !== memory[letter] ? sj.letters.STATE_CORRECT : sj.letters.STATE_INCORRECT;
+        },
         'clear': function () {
             memory = {};
         }

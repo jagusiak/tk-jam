@@ -1,7 +1,7 @@
 {
     "keys": {
-        "sounds" : [],
-        "textures" : [],
+        "sounds": [],
+        "textures": [],
         "objects": {
             "key_q": {
                 "position": {
@@ -66,8 +66,8 @@
         }
     },
     "run": {
-        "sounds" : [],
-        "textures" : [],
+        "sounds": [],
+        "textures": [],
         "objects": {
             "background": {
                 "position": {

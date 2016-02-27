@@ -3,6 +3,9 @@
         "key_q" : "images/q.png",
         "key_t" : "images/t.png",
         "key_e" : "images/e.png",
+
+        "letters" : "images/letters.png",
+
         "bg_1" : "images/bg_1.png",
         "anim" : "images/agent.png",
 		"jump" : "images/agentjump.png",
