@@ -16,8 +16,8 @@ window.SJ.module('arrows', function (sj) {
                 1,
                 1
             );
-            arrows.setDimension(0.09, 0.09);
-            arrows.setPosition(0.75, 0.80, sj.letters.BASE_Z);
+            arrows.setDimension(32 / 160, 35 / 105);
+            arrows.setPosition(0.90, 0.83, sj.letters.BASE_Z);
             arrows.setVisible(false);
 
             return arrows;
@@ -32,9 +32,17 @@ window.SJ.module('arrows', function (sj) {
                 0.2 * type + 0.2,
                 0.33
             );
-            arrows.setDimension(0.09, 0.09);
-            arrows.setPosition(0.75, 0.80, sj.letters.BASE_Z);
+            arrows.setDimension(32 / 160, 31 / 105);
+            arrows.setPosition(0.90, 0.83, sj.letters.BASE_Z);
             arrows.setVisible(true);
+
+            var animation = sj.animation.create(arrows);
+
+            for (var j = 0; j < 3; j++) {
+                animation.addFrame(arrows.texture, 0.2 * type, j / 3, 0.2 * type + 0.2, (j + 1) / 3);
+            }
+
+            return animation;
         }
     };
 });

@@ -51,7 +51,6 @@ window.SJ.module('listener', function (sj) {
             case sj.arrows.TYPE_SINGLE:
             case sj.arrows.TYPE_PAIR:
             case sj.arrows.TYPE_TRIPLE:
-                debugger;
                 var filtered = internal_filter(function (k) {
                         return keys.indexOf(k) != -1;
                     }, memory), min = internal_min(memory), max = internal_max(memory),
@@ -118,8 +117,6 @@ window.SJ.module('listener', function (sj) {
         'check': function (generated, letter, objects) {
             var checked = internal_check(generated);
             if (tryout !== checked && sj.letters.STATE_CORRECT === checked) {
-                console.log('S: ' + score + ' | +: ' + generated.points);
-
                 score += generated.points;
                 tryout = checked;
 

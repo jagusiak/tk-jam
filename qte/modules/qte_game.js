@@ -31,7 +31,7 @@ window.SJ.module('qte_game', function (sj) {
                 frame = 0, phase_counter = 0,
                 letters, letter, letterObjects = [],
                 numbers, numberObjects = [],
-                arrows, arrowObject,
+                arrows, arrowObject, arrowAnimation,
                 listener,
                 generator, generated, progress, generateObstacle = true, obstacles = [],
                 downObstacles = ['ob_0', 'ob_1', 'ob_2', 'ob_3'], upObstacles = [], j = 0, currentObstacle, done = false;
@@ -55,14 +55,14 @@ window.SJ.module('qte_game', function (sj) {
                 j++;
             }
 
+            numbers = sj.numbers;
+            numberObjects = numbers.init(scene);
+
             generator = sj.qte_generator;
             generated = generator.next();
 
             letters = sj.letters;
             letterObjects = letters.init(scene);
-
-            numbers = sj.numbers;
-            numberObjects = numbers.init(scene);
 
             arrows = sj.arrows;
             arrowObject = arrows.init(scene);
@@ -107,7 +107,9 @@ window.SJ.module('qte_game', function (sj) {
 
 
                 currentLocation += speed;
-
+                if (undefined !== arrowAnimation) {
+                    arrowAnimation.play();
+                }
 
                 for (select in obstacles) {
                     var ob = obstacles[select];
@@ -123,7 +125,7 @@ window.SJ.module('qte_game', function (sj) {
                             listener.clear();
                             generated = generator.next();
 
-                            arrows.set(arrowObject, generated.type);
+                            arrowAnimation = arrows.set(arrowObject, generated.type);
 
                             for (var obj in sj.config('keys', 'keys')) {
                                 var ind = generated.keys.indexOf(obj), letter = letterObjects[obj];
