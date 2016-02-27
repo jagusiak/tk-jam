@@ -83,6 +83,7 @@ window.SJ.module('input', function(sj) {
         KEY_UP : 38,
         KEY_RIGHT : 39,
         KEY_DOWN : 40,
+
         onKeyDown : function(listener, preventDefault) {
             attachKeyEvent('keydown', listener, preventDefault);
         },

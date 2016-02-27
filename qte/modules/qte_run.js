@@ -4,7 +4,7 @@ window.SJ.module('qte_run', function(sj) {
         'init' : function() {
             var canvas = sj.canvas,
                 scene, generator = sj.qte_generator,
-                keys,
+                keys, listener = sj.listener,
                 keyObjects = {},
                 pressed = {},
                 frameCounter = 0;
@@ -20,29 +20,22 @@ window.SJ.module('qte_run', function(sj) {
             scene.onFrame = function () {
                 frameCounter++;
 
-                console.log(generator.next());
-
                 for (var i in keys) {
-                    keyObjects[keys[i]].setVisible((Math.floor(frameCounter/200) % 3) == i);
+                    keyObjects[keys[i]].setVisible(true);
+                }
+
+                if(frameCounter % 30 === 0){
+                    console.log(listener.check(generator.next()));
+                    listener.clear();
                 }
             };
 
             sj.input.onKeyDown(function(key) {
-                var code = String.fromCharCode(key).toLowerCase(), object = keyObjects[code];
-                if (object && !pressed[code]) {
-                    object.setDimension(object.width, object.height/2);
-                    object.setPosition(object.x, object.y+object.height/2, object.z);
-                    pressed[code] = true;
-                }
+                listener.down(String.fromCharCode(key).toLowerCase(), frameCounter);
             });
 
             sj.input.onKeyUp(function(key) {
-                var code = String.fromCharCode(key).toLowerCase(), object = keyObjects[code];
-                if (object) {
-                    object.setPosition(object.x, object.y-object.height/2, object.z);
-                    object.setDimension(object.width, object.height*2);
-                    pressed[code] = false;
-                }
+                listener.up(String.fromCharCode(key).toLowerCase(), frameCounter);
             });
 
             canvas.start();
