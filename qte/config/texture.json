@@ -1,0 +1,9 @@
+{
+    "textures" : {
+        "key_q" : "images/q.png",
+        "key_t" : "images/t.png",
+        "key_e" : "images/e.png",
+        "bg_1" : "images/bg_1.png",
+        "anim" : "images/anim.png"
+    }
+}

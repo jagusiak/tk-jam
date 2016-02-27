@@ -1,0 +1,16 @@
+{
+    "modules": {
+        "qte_start" : "APP_NAME/modules/qte_start",
+        "qte_run" : "APP_NAME/modules/qte_run"
+    },
+    "configuration": {
+        "scenes" : {
+            "scope" : "APP",
+            "file" : "scenes"
+        }
+    },
+    "init": {
+        "module" : "qte_start",
+        "action" : "init"
+    }
+}
