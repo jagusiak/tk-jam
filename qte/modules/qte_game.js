@@ -4,7 +4,8 @@ window.SJ.module('qte_game', function (sj) {
             var guy = scene.getObject('guy'), stink = scene.getObject('stink');
             runAnimation = sj.animation.create(guy);
             jumpAnimation = sj.animation.create(guy);
-            stinkAnimation = sj.animation.create(scene.getObject('stink'));
+            slideAnimation = sj.animation.create(guy);
+            stinkAnimation = sj.animation.create(stink);
             jumpAnimation.setStep(5);
             jumpAnimation.setLooped(false);
             stinkAnimation.setStep(4);
@@ -26,7 +27,7 @@ window.SJ.module('qte_game', function (sj) {
             }
         },
         run = function () {
-            var background, obstacle, currentAnimation,
+            var background, obstacle, currentAnimation, guy,
                 frame = 0,
                 letters, letter, letterObjects = [],
                 listener,
@@ -38,6 +39,7 @@ window.SJ.module('qte_game', function (sj) {
             obstacle = scene.getObject('tree');
             obstacle.setPosition(-1, obstacle.y, obstacle.z);
             progress = scene.getObject("progress");
+            guy = scene.getObject('guy');
 
             generator = sj.qte_generator;
             generated = generator.next();
@@ -58,9 +60,10 @@ window.SJ.module('qte_game', function (sj) {
                 progress.setPosition(0.02*leftSeconds + 0.03, 0.03, 10);
                 progress.setDimension(0.04*leftSeconds, 0.04);
 
-                if (leftSeconds < 1) {
+                if (leftSeconds < 0) {
                     stinkAnimation.play();
                     scene.getObject("stink").setVisible(true);
+                    guy.setTexture(guy.texture, 13/14, 0, 1, 1);
                     return;
                 }
 
@@ -75,9 +78,8 @@ window.SJ.module('qte_game', function (sj) {
                     runAnimation.setStep(1);
                 } else {
                     if (speed > 0.02) {
-                        currentAnimation = Math.random()> 0.5?slideAnimation:jumpAnimation;
+                        currentAnimation = jumpAnimation;
                         currentAnimation.setCurrentFrame(0);
-                        console.log("jump");
                     }
                     speed = 0.02;
                     runAnimation.setStep(2);
