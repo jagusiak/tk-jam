@@ -119,12 +119,10 @@ window.SJ.module('listener', function (sj) {
             if (tryout !== checked && sj.letters.STATE_CORRECT === checked) {
                 console.log('S: ' + score + ' | +: ' + generated.points);
 
-                objects[score].setVisible(false);
-
                 score += generated.points;
                 tryout = checked;
 
-                objects[score].setVisible(score);
+                sj.numbers.set(objects.tenth, objects.unit, score);
             }
 
             return checked;
