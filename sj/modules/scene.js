@@ -113,9 +113,7 @@ window.SJ.module('scene', function (sj) {
                 if (objectData.texture) {
                     object.setTexture(sj.texture.get(objectData.texture.name), objectData.texture.left, objectData.texture.top, objectData.texture.right, objectData.texture.bottom);
                 }
-                if (objectData.visibility) {
-                    object.setVisible(objectData.visibility);
-                }
+                object.setVisible(objectData.visibility);
             }
         }
 
