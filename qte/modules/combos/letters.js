@@ -4,6 +4,7 @@ window.SJ.module('letters', function (sj) {
         STATE_IDLE: 0,
         STATE_CORRECT: 1,
         STATE_INCORRECT: 2,
+        STATE_PART: 3,
 
         POS_TOP: 0,
         POS_MIDDLE: 1,
@@ -12,9 +13,11 @@ window.SJ.module('letters', function (sj) {
         POS_OFFSET: 0.10,
 
         BASE_X: 0.75,
-        BASE_Y: 0.75,
+        BASE_Y: 0.728,
+        BASE_Z: 10,
 
-        DIVIDER: 0.33,
+        DIVIDER_X: 0.25,
+        DIVIDER_Y: 0.03846,
 
         'init': function (scene) {
             var objects = {}, iterator = 0;
@@ -28,7 +31,7 @@ window.SJ.module('letters', function (sj) {
             return objects;
         },
         'set': function (object, letter, state, position) {
-            var letters, left = state * sj.letters.DIVIDER, top = letter * sj.letters.DIVIDER;
+            var letters, left = state * sj.letters.DIVIDER_X, top = letter * sj.letters.DIVIDER_Y;
 
             sj.texture.load('letters');
 
@@ -36,21 +39,18 @@ window.SJ.module('letters', function (sj) {
                 sj.texture.get('letters'),
                 left,
                 top,
-                left + sj.letters.DIVIDER,
-                top + sj.letters.DIVIDER);
+                left + sj.letters.DIVIDER_X,
+                top + sj.letters.DIVIDER_Y);
             object.setDimension(0.09, 0.09);
-            object.setPosition(0.75, 0.728 + position * sj.letters.POS_OFFSET, 10);
+            object.setPosition(0.75, 0.728 + position * sj.letters.POS_OFFSET, sj.letters.BASE_Z);
             object.setVisible(true);
         },
         'position': function (object, position) {
-            object.setPosition(object.x, position * sj.letters.POS_OFFSET, object.z);
+            object.setPosition(sj.letters.BASE_X, sj.letters.BASE_Y + position * sj.letters.POS_OFFSET, sj.letters.BASE_Z);
         },
         'state': function (object, state) {
-            var left = state * sj.letters.DIVIDER;
-
-            console.log(left);
-
-            object.setTexture(object.texture, left, object.textureTop, left + sj.letters.DIVIDER, object.textureBottom);
+            var left = state * sj.letters.DIVIDER_X;
+            object.setTexture(object.texture, left, object.textureTop, left + sj.letters.DIVIDER_X, object.textureBottom);
         }
     };
 
