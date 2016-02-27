@@ -1,11 +1,11 @@
-window.SJ.module('choice', function(sj) {
+window.SJ.module('choice', function (sj) {
     return {
-        'next' : function () {
+        'next': function () {
             var keys = sj.config('keys', 'keys'),
                 r = sj.random,
                 a = r.get(), b = r.get();
 
-            while(b === a) {
+            while (b === a) {
                 b = r.get();
             }
 
@@ -13,7 +13,8 @@ window.SJ.module('choice', function(sj) {
                 type: 'choice',
                 keys: [
                     a, b
-                ]
+                ],
+                points: 1
             };
         }
     };

@@ -67,7 +67,7 @@ window.SJ.module('qte_game', function (sj) {
 
                 for (var obj in generated.keys) {
                     var ident = generated.keys[obj];
-                    letters.state(letterObjects[ident], listener.partial(generated, ident));
+                    letters.state(letterObjects[ident], listener.check(generated, ident));
                 }
 
                 if (frame % 60 === 0) {

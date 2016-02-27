@@ -13,7 +13,8 @@ window.SJ.module('pair', function(sj) {
                 type: 'pair',
                 keys: [
                     a, b
-                ]
+                ],
+                points: 2
             };
         }
     };

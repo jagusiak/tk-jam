@@ -1,5 +1,5 @@
 window.SJ.module('listener', function (sj) {
-    var memory = {};
+    var memory = {}, score = 0, tryout;
 
     var internal_min = function (obj) {
         var local;
@@ -45,23 +45,42 @@ window.SJ.module('listener', function (sj) {
         return filtered;
     };
 
-    var internal_check = function (generated) {
+    var internal_check = function (generated, letter) {
         var keys = generated.keys, length = keys.length, memkeys = Object.keys(memory), memlength = memkeys.length;
         switch (generated.type) {
             case 'single':
             case 'pair':
             case 'triple':
                 var filtered = internal_filter(function (k) {
-                    return keys.indexOf(k) != -1;
-                }, memory), min = internal_min(memory), max = internal_max(memory);
-
-                return memlength === length && length === Object.keys(filtered).length
-                    && undefined !== min && undefined !== max
-                    && 1 >= Math.abs(max - min);
-            case 'choice':
-                return 1 < length && 1 === memlength && 1 === Object.keys(internal_filter(function (k) {
                         return keys.indexOf(k) != -1;
-                    }, memory)).length;
+                    }, memory), min = internal_min(memory), max = internal_max(memory),
+                    fillkeys = Object.keys(filtered), fillen = fillkeys.length;
+
+                if (0 >= memlength) {
+                    return sj.letters.STATE_IDLE;
+                } else if (memlength !== fillen || 1 < Math.abs(max - min)) {
+                    return sj.letters.STATE_INCORRECT;
+                } else if (length > fillen) {
+                    if (undefined !== letter) {
+                        if (fillkeys.indexOf(letter) != -1) {
+                            return sj.letters.STATE_PART;
+                        } else {
+                            return sj.letters.STATE_PART;
+                        }
+                    } else {
+                        return sj.letters.STATE_PART;
+                    }
+                } else {
+                    return sj.letters.STATE_CORRECT;
+                }
+            case 'choice':
+                if (1 === memlength && 1 === Object.keys(internal_filter(function (k) {
+                        return keys.indexOf(k) != -1;
+                    }, memory)).length) {
+                    return sj.letters.STATE_CORRECT;
+                } else {
+                    return sj.letters.STATE_INCORRECT;
+                }
             case 'sequence':
                 var time = internal_min(internal_filter(function (o) {
                     return keys.indexOf(o) != -1;
@@ -70,13 +89,15 @@ window.SJ.module('listener', function (sj) {
                 for (var k in keys) {
                     var next = memory[keys[k]];
                     if (next === undefined || time > next) {
-                        return false;
+                        return sj.letters.STATE_INCORRECT;
+                    } else if (undefined !== letter && k === letter) {
+                        return sj.letters.STATE_PART
                     }
 
                     time = next;
                 }
 
-                return memlength === length;
+                return memlength === length ? sj.letters.STATE_CORRECT : sj.letters.STATE_INCORRECT;
             default:
                 return false
         }
@@ -93,22 +114,19 @@ window.SJ.module('listener', function (sj) {
                 memory[key] = time;
             }
         },
-        'check': function (generated) {
-            return internal_check(generated);
-        },
-        'partial': function (generated, letter) {
-            if (internal_check(generated)) {
-                return sj.letters.STATE_CORRECT;
-            } else if (undefined === memory[letter]) {
-                return sj.letters.STATE_IDLE;
-            } else if (-1 === memory[letter]) {
-                return sj.letters.STATE_PART;
-            } else {
-                return sj.letters.STATE_INCORRECT;
+        'check': function (generated, letter) {
+            var checked = internal_check(generated);
+            if (tryout !== checked && sj.letters.STATE_CORRECT === checked) {
+                console.log('S: ' + score + ' | +: ' + generated.points);
+
+                score += generated.points;
+                tryout = checked;
             }
+
+            return checked;
         },
         'clear': function () {
-            memory = {};
+            memory = {}, tryout = undefined;
         }
     };
 });

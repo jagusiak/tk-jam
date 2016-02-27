@@ -43,7 +43,7 @@ window.SJ.module('letters', function (sj) {
                 top + sj.letters.DIVIDER_Y);
             object.setDimension(0.09, 0.09);
             object.setPosition(0.75, 0.728 + position * sj.letters.POS_OFFSET, sj.letters.BASE_Z);
-            object.setVisible(true);
+            object.setVisible(false);
         },
         'position': function (object, position) {
             object.setPosition(sj.letters.BASE_X, sj.letters.BASE_Y + position * sj.letters.POS_OFFSET, sj.letters.BASE_Z);

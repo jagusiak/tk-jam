@@ -13,7 +13,8 @@ window.SJ.module('sequence', function(sj) {
                 type: 'sequence',
                 keys: [
                     a, b
-                ]
+                ],
+                points: 2
             };
         }
     };

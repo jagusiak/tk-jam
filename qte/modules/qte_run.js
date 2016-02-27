@@ -25,7 +25,6 @@ window.SJ.module('qte_run', function(sj) {
                 }
 
                 if(frameCounter % 30 === 0){
-                    console.log(listener.check(generated));
                     listener.clear();
 
                     generated = generator.next();

@@ -7,7 +7,8 @@ window.SJ.module('single', function(sj) {
                 type: 'single',
                 keys: [
                     r.get()
-                ]
+                ],
+                points: 1
             };
         }
     };
