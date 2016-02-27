@@ -30,6 +30,7 @@ window.SJ.module('qte_game', function (sj) {
             var background, obstacle, currentAnimation, guy,
                 frame = 0, phase_counter = 0,
                 letters, letter, letterObjects = [],
+                numbers, numberObjects = [],
                 listener,
                 generator, generated, progress, generateObstacle = true, obstacles = [],
                 downObstacles = ['ob_0', 'ob_1', 'ob_2', 'ob_3'], upObstacles = [], j = 0, currentObstacle, done = false;
@@ -58,6 +59,9 @@ window.SJ.module('qte_game', function (sj) {
 
             letters = sj.letters;
             letterObjects = letters.init(scene);
+
+            numbers = sj.numbers;
+            numberObjects = numbers.init(scene);
 
             listener = sj.listener;
 
@@ -168,7 +172,7 @@ window.SJ.module('qte_game', function (sj) {
 
                 if (currentObstacle) {
                 for (var obj in generated.keys) {
-                    var ident = generated.keys[obj], check = listener.check(generated, ident);
+                    var ident = generated.keys[obj], check = listener.check(generated, ident, numberObjects);
 
                     letters.state(letterObjects[ident], check);
 

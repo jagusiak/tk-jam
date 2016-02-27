@@ -12,7 +12,8 @@
         "triple": "APP_NAME/modules/combos/triple",
         "sequence": "APP_NAME/modules/combos/sequence",
         "random": "APP_NAME/modules/combos/random",
-        "listener": "APP_NAME/modules/combos/listener"
+        "listener": "APP_NAME/modules/combos/listener",
+        "numbers": "APP_NAME/modules/combos/numbers"
     },
     "configuration": {
         "scenes": {

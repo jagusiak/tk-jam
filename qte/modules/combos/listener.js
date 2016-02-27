@@ -114,13 +114,15 @@ window.SJ.module('listener', function (sj) {
                 memory[key] = time;
             }
         },
-        'check': function (generated, letter) {
+        'check': function (generated, letter, objects) {
             var checked = internal_check(generated);
             if (tryout !== checked && sj.letters.STATE_CORRECT === checked) {
                 console.log('S: ' + score + ' | +: ' + generated.points);
 
                 score += generated.points;
                 tryout = checked;
+
+                sj.numbers.set(objects.tenth, objects.unit, score);
             }
 
             return checked;
