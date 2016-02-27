@@ -3,7 +3,7 @@ window.SJ.module('qte_run', function(sj) {
     return {
         'init' : function() {
             var canvas = sj.canvas,
-                scene, generator = sj.qte_generator,
+                scene, generator = sj.qte_generator, generated = generator.next(),
                 keys, listener = sj.listener,
                 keyObjects = {},
                 pressed = {},
@@ -25,8 +25,11 @@ window.SJ.module('qte_run', function(sj) {
                 }
 
                 if(frameCounter % 30 === 0){
-                    console.log(listener.check(generator.next()));
+                    console.log(listener.check(generated));
                     listener.clear();
+
+                    generated = generator.next();
+                    console.log('Type: ' + generated.type + ' | Setting: ' + generated.keys);
                 }
             };
 
