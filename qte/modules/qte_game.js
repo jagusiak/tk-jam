@@ -1,11 +1,13 @@
 window.SJ.module('qte_game', function (sj) {
-    var canvas, scene, currentLocation = 0, canvasWidth = 1.5, speed = 0.02, runAnimation, jumpAnimation,
+    var canvas, scene, currentLocation = 0, canvasWidth = 1.5, speed = 0.02, runAnimation, jumpAnimation, stinkAnimation,
         loadAnimations = function () {
-            var guy = scene.getObject('guy');
+            var guy = scene.getObject('guy'), stink = scene.getObject('stink');
             runAnimation = sj.animation.create(guy);
             jumpAnimation = sj.animation.create(guy);
+            stinkAnimation = sj.animation.create(scene.getObject('stink'));
             jumpAnimation.setStep(5);
             jumpAnimation.setLooped(false);
+            stinkAnimation.setStep(4);
 
             for (var i = 0; i < 6; i++) {
                 runAnimation.addFrame(guy.texture, i / 11, 0, (i + 1) / 11, 1);
@@ -13,19 +15,23 @@ window.SJ.module('qte_game', function (sj) {
             for (i = 6; i < 10; i++) {
                 jumpAnimation.addFrame(guy.texture, i / 11, 0, (i + 1) / 11, 1);
             }
+            for (i = 0; i < 2; i++) {
+                stinkAnimation.addFrame(stink.texture, i / 2, 0, (i + 1) / 2, 1);
+            }
         },
         run = function () {
             var background, obstacle, currentAnimation,
                 frame = 0,
                 letters, letter, letterObjects = [],
                 listener,
-                generator, generated;
+                generator, generated, progress;
             canvas = sj.canvas;
             canvas.init();
             scene = canvas.createScene('scene_1', sj.config('scenes', 'run'));
             background = scene.getObject('background');
             obstacle = scene.getObject('tree');
             obstacle.setPosition(-1, obstacle.y, obstacle.z);
+            progress = scene.getObject("progress");
 
             generator = sj.qte_generator;
             generated = generator.next();
@@ -40,7 +46,18 @@ window.SJ.module('qte_game', function (sj) {
             currentAnimation = runAnimation;
 
             scene.onFrame = function () {
+                var leftSeconds = 10 - Math.floor(frame/25);
                 frame++;
+                progress.setTexture(progress.texture, 0, 0, leftSeconds/10,1);
+                progress.setPosition(0.02*leftSeconds + 0.03, 0.03, 10);
+                progress.setDimension(0.04*leftSeconds, 0.04);
+
+                if (leftSeconds < 1) {
+                    stinkAnimation.play();
+                    scene.getObject("stink").setVisible(true);
+                    return;
+                }
+
 
                 background.setPosition(currentLocation - Math.floor(currentLocation / 1.5) * 1.5, background.y, background.z);
                 currentAnimation.play();
