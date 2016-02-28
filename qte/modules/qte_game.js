@@ -34,7 +34,7 @@ window.SJ.module('qte_game', function (sj) {
                 arrows, arrowObject, arrowAnimation,
                 listener, blinking = false,
                 generator, generated, progress, generateObstacle = true, obstacles = [],
-                downObstacles = ['ob_0', 'ob_1', 'ob_2'], upObstacles = ['ob_3', 'ob_4', 'ob_5', 'ob_6'], j = 0, currentObstacle, done = false;
+                downObstacles = ['ob_0', 'ob_1', 'ob_2'], upObstacles = ['ob_3','ob_4', 'ob_5', 'ob_6'], j = 0, currentObstacle, done = false;
             canvas = sj.canvas;
             canvas.init();
 
@@ -102,6 +102,7 @@ window.SJ.module('qte_game', function (sj) {
                         currentObstacle = undefined;
                         blinking = 0;
                         guy.setVisible(true);
+
                         sj.input.onKeyDown(function (key) {
                             listener.down(String.fromCharCode(key).toLowerCase(), frame);
                         });
@@ -164,6 +165,7 @@ window.SJ.module('qte_game', function (sj) {
                             arrowAnimation = arrows.set(arrowObject, generated.type);
 
                             for (var obj in sj.config('keys', 'keys')) {
+                                console.log(obj + " : " + generated.keys.join());
                                 var ind = generated.keys.indexOf(obj), letter = letterObjects[obj];
                                 if (ind != -1) {
                                     letters.position(letter, ind);
@@ -200,8 +202,8 @@ window.SJ.module('qte_game', function (sj) {
                 }
 
                 if (currentObstacle) {
-                    for (var obj in generated.keys) {
-                        var ident = generated.keys[obj], check = listener.check(generated, ident, numberObjects);
+                    for (var object in generated.keys) {
+                        var ident = generated.keys[object], check = listener.check(generated, ident, numberObjects);
 
                         letters.state(letterObjects[ident], check);
 
