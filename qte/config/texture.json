@@ -7,6 +7,7 @@
         "any_key" : "images/any_key.png",
         "progress" : "images/progress.png",
         "stink" : "images/stink.png",
+        "obstacles" : "images/sprite_obstacle.png",
 
         "letters" : "images/letters.png",
         "numbers" : "images/numbers.png",

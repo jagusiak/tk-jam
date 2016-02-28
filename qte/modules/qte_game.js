@@ -6,12 +6,12 @@ window.SJ.module('qte_game', function (sj) {
             jumpAnimation = sj.animation.create(guy);
             slideAnimation = sj.animation.create(guy);
             stinkAnimation = sj.animation.create(stink);
-            jumpAnimation.setStep(6);
+            jumpAnimation.setStep(4);
             jumpAnimation.setLooped(false);
             stinkAnimation.setStep(4);
-            slideAnimation.setStep(5);
+            slideAnimation.setStep(7);
             slideAnimation.setLooped(false);
-            slideAnimation = sj.animation.create(guy);
+
 
             for (var i = 0; i < 6; i++) {
                 runAnimation.addFrame(guy.texture, i / 16, 0, (i + 1) / 16, 1);
@@ -32,9 +32,9 @@ window.SJ.module('qte_game', function (sj) {
                 letters, letter, letterObjects = [],
                 numbers, numberObjects = [],
                 arrows, arrowObject, arrowAnimation,
-                listener,
+                listener, blinking = false,
                 generator, generated, progress, generateObstacle = true, obstacles = [],
-                downObstacles = ['ob_0', 'ob_1', 'ob_2', 'ob_3'], upObstacles = [], j = 0, currentObstacle, done = false;
+                downObstacles = ['ob_0', 'ob_1', 'ob_2', 'ob_3'], upObstacles = ['ob_4', 'ob_5', 'ob_6'], j = 0, currentObstacle, done = false;
             canvas = sj.canvas;
             canvas.init();
             if (!scene) {
@@ -45,6 +45,8 @@ window.SJ.module('qte_game', function (sj) {
             progress = scene.getObject("progress");
             guy = scene.getObject('guy');
 
+            loadAnimations();
+
             for (var n in downObstacles) {
                 obstacles[j] = scene.getObject(downObstacles[n]);
                 obstacles[j]['animation'] = jumpAnimation;
@@ -53,7 +55,7 @@ window.SJ.module('qte_game', function (sj) {
 
             for (n in upObstacles) {
                 obstacles[j] = scene.getObject(upObstacles[n]);
-                obstacles[j]['animation'] = slideAnimationion;
+                obstacles[j]['animation'] = slideAnimation;
                 j++;
             }
 
@@ -71,7 +73,7 @@ window.SJ.module('qte_game', function (sj) {
 
             listener = sj.listener;
 
-            loadAnimations();
+
 
             currentAnimation = runAnimation;
 
@@ -97,7 +99,8 @@ window.SJ.module('qte_game', function (sj) {
                             obstacles[o].setVisible(false);
                         }
                         currentObstacle = undefined;
-
+                        blinking = 0;
+                        guy.setVisible(true);
                         sj.input.onKeyDown(function (key) {
                             listener.down(String.fromCharCode(key).toLowerCase(), frame);
                         });
@@ -122,6 +125,12 @@ window.SJ.module('qte_game', function (sj) {
                     o.setPosition(frame < 5 ? -0.7 : -0.4, o.y, o.z);
                     o.setVisible(true);
                     generateObstacle = false;
+                }
+
+                if (frame - blinking < 0) {
+                    guy.setVisible(frame % 2);
+                } else {
+                    guy.setVisible(true);
                 }
 
                 background.setPosition(currentLocation - Math.floor(currentLocation / 1.5) * 1.5, background.y, background.z);
@@ -168,14 +177,16 @@ window.SJ.module('qte_game', function (sj) {
 
                         }
                         if (currentObstacle && currentObstacle.x > 0.50) {
-                            currentObstacle = undefined;
                             generateObstacle = true;
                             if (done) {
-                                currentAnimation = jumpAnimation;
+                                currentAnimation = currentObstacle.animation;
                                 currentAnimation.setCurrentFrame(0);
                             } else {
+                                blinking = frame + 20;
+
                                 // wyłącz
                             }
+                            currentObstacle = undefined;
                             listener.clear();
                         }
                     }

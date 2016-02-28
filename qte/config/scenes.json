@@ -248,6 +248,66 @@
                     "bottom": 1
                 },
                 "visibility": false
+            },
+            "ob_4": {
+                "position": {
+                    "x": 0.75,
+                    "y": 0.45,
+                    "z": 3
+                },
+                "rotation": 0.0,
+                "dimension": {
+                    "width": 0.25,
+                    "height": 0.25
+                },
+                "texture": {
+                    "name": "obstacles",
+                    "top": 0,
+                    "left": 0.66,
+                    "right": 1.00,
+                    "bottom": 1
+                },
+                "visibility": false
+            },
+            "ob_5": {
+                "position": {
+                    "x": 0.75,
+                    "y": 0.45,
+                    "z": 3
+                },
+                "rotation": 0.0,
+                "dimension": {
+                    "width": 0.25,
+                    "height": 0.25
+                },
+                "texture": {
+                    "name": "obstacles",
+                    "top": 0,
+                    "left": 0.66,
+                    "right": 1.00,
+                    "bottom": 1
+                },
+                "visibility": false
+            },
+            "ob_6": {
+                "position": {
+                    "x": 0.75,
+                    "y": 0.45,
+                    "z": 3
+                },
+                "rotation": 0.0,
+                "dimension": {
+                    "width": 0.25,
+                    "height": 0.25
+                },
+                "texture": {
+                    "name": "obstacles",
+                    "top": 0,
+                    "left": 0,
+                    "right": 0.33,
+                    "bottom": 1
+                },
+                "visibility": false
             }
         }
     }
