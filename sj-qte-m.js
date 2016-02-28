@@ -97,8 +97,8 @@ window.SJ = (function () {
      */
     function init(appName) {
         app = (!appName ? 'app' : appName);
-        window.SJ.settings = {"configuration": {"canvas": {"scope": "FULL", "file": "canvas"}, "texture": {"scope": "APP", "file": "texture"}, "sound": {"scope": "APP", "file": "sound"}, "scenes": {"scope": "APP", "file": "scenes"}}, "modules": {"utils": "sj/modules/utils", "h4render": "sj/modules/h4render", "texture": "sj/modules/texture", "canvasobject": "sj/modules/canvasobject", "scene": "sj/modules/scene", "canvas": "sj/modules/canvas", "sound": "sj/modules/sound", "input": "sj/modules/input", "animation": "sj/modules/animation", "default": "sj/modules/default", "loader": "sj/modules/loader", "qte_start": "APP_NAME/modules/qte_start", "qte_run": "APP_NAME/modules/qte_run", "qte_generator": "APP_NAME/modules/qte_generator"}, "init": {"module": "qte_run", "action": "init"}};
-window.SJ.config = (function(configuration) {var data = configuration; return function(name, item) {return data[name][item]; };}({"sound": {}, "canvas": {"height": 1.0, "width": 1.0, "fps": 30, "loader": "loader", "canvas_id": "sj-canvas", "redner": "h4renderer"}, "scenes": {"keys": {"textures": [], "sounds": [], "objects": {"key_e": {"position": {"y": 0.7, "x": 0.8, "z": 3}, "rotation": 0.0, "visibility": true, "dimension": {"width": 0.2, "height": 0.2}, "texture": {"bottom": 1, "top": 0, "right": 1, "name": "key_e", "left": 0}}, "key_t": {"position": {"y": 0.7, "x": 0.5, "z": 3}, "rotation": 0.0, "visibility": true, "dimension": {"width": 0.2, "height": 0.2}, "texture": {"bottom": 1, "top": 0, "right": 1, "name": "key_t", "left": 0}}, "key_q": {"position": {"y": 0.7, "x": 0.2, "z": 3}, "rotation": 0.0, "visibility": true, "dimension": {"width": 0.2, "height": 0.2}, "texture": {"bottom": 1, "top": 0, "right": 1, "name": "key_q", "left": 0}}}}, "run": {"textures": [], "sounds": [], "objects": {"guy": {"position": {"y": 0.5, "x": 0.75, "z": 2}, "rotation": 0.0, "visibility": true, "dimension": {"width": 0.2, "height": 0.2}, "texture": {"bottom": 1, "top": 0, "right": 0.09, "name": "anim", "left": 0}}, "background": {"position": {"y": 0.5, "x": 0.75, "z": 1}, "rotation": 0.0, "visibility": true, "dimension": {"width": 1.5, "height": 1.0}, "texture": {"bottom": 1, "top": 0, "right": 4, "name": "bg_1", "left": 0}}}}}, "texture": {"textures": {"key_e": "images/e.png", "key_t": "images/t.png", "anim": "images/anim.png", "key_q": "images/q.png", "bg_1": "images/bg_1.png"}}}));
+        window.SJ.settings = {"configuration": {"canvas": {"scope": "FULL", "file": "canvas"}, "texture": {"scope": "APP", "file": "texture"}, "sound": {"scope": "APP", "file": "sound"}, "scenes": {"scope": "APP", "file": "scenes"}, "keys": {"scope": "APP", "file": "keys"}}, "modules": {"utils": "sj/modules/utils", "h4render": "sj/modules/h4render", "texture": "sj/modules/texture", "canvasobject": "sj/modules/canvasobject", "scene": "sj/modules/scene", "canvas": "sj/modules/canvas", "sound": "sj/modules/sound", "input": "sj/modules/input", "animation": "sj/modules/animation", "default": "sj/modules/default", "loader": "sj/modules/loader", "qte_start": "APP_NAME/modules/qte_start", "qte_run": "APP_NAME/modules/qte_run", "qte_intro": "APP_NAME/modules/qte_intro", "qte_generator": "APP_NAME/modules/qte_generator", "qte_game": "APP_NAME/modules/qte_game", "letters": "APP_NAME/modules/combos/letters", "pair": "APP_NAME/modules/combos/pair", "single": "APP_NAME/modules/combos/single", "choice": "APP_NAME/modules/combos/choice", "triple": "APP_NAME/modules/combos/triple", "sequence": "APP_NAME/modules/combos/sequence", "random": "APP_NAME/modules/combos/random", "listener": "APP_NAME/modules/combos/listener", "numbers": "APP_NAME/modules/combos/numbers", "arrows": "APP_NAME/modules/combos/arrows"}, "init": {"module": "qte_intro", "action": "init"}};
+window.SJ.config = (function(configuration) {var data = configuration; return function(name, item) {return data[name][item]; };}({"canvas": {"fps": 25, "width": 1.5, "redner": "h4renderer", "canvas_id": "sj-canvas", "height": 1.0, "loader": "loader"}, "scenes": {"welcome": {"objects": {"guy": {"rotation": 0.0, "texture": {"left": 0, "bottom": 1, "right": 1, "name": "anim", "top": 0}, "dimension": {"height": 0.8, "width": 0.8}, "position": {"y": 0.3, "x": 1.0, "z": 3}, "visibility": true}, "any_key": {"rotation": 0.0, "texture": {"left": 0, "bottom": 1, "right": 1, "name": "any_key", "top": 0}, "dimension": {"height": 0.1, "width": 0.4}, "position": {"y": 0.8, "x": 0.75, "z": 8}, "visibility": true}, "back": {"rotation": 0.0, "texture": {"left": 0, "bottom": 1, "right": 1, "name": "logo", "top": 0}, "dimension": {"height": 1, "width": 1.5}, "position": {"y": 0.5, "x": 0.75, "z": 1}, "visibility": true}}, "textures": [], "sounds": []}, "run": {"objects": {"ob_5": {"rotation": 0.0, "texture": {"left": 0.66, "bottom": 1, "right": 1.0, "name": "obstacles", "top": 0}, "dimension": {"height": 0.25, "width": 0.25}, "position": {"y": 0.45, "x": 0.75, "z": 3}, "visibility": false}, "ob_6": {"rotation": 0.0, "texture": {"left": 0, "bottom": 1, "right": 0.33, "name": "obstacles", "top": 0}, "dimension": {"height": 0.25, "width": 0.25}, "position": {"y": 0.45, "x": 0.75, "z": 3}, "visibility": false}, "ob_2": {"rotation": 0.0, "texture": {"left": 0.15, "bottom": 1, "right": 0.33, "name": "tree", "top": 0}, "dimension": {"height": 0.15, "width": 0.15}, "position": {"y": 0.5, "x": 0.75, "z": 3}, "visibility": false}, "ob_4": {"rotation": 0.0, "texture": {"left": 0.66, "bottom": 1, "right": 1.0, "name": "obstacles", "top": 0}, "dimension": {"height": 0.25, "width": 0.25}, "position": {"y": 0.45, "x": 0.75, "z": 3}, "visibility": false}, "any_key": {"rotation": 0.0, "texture": {"left": 0, "bottom": 1, "right": 1, "name": "any_key", "top": 0}, "dimension": {"height": 0.1, "width": 0.4}, "position": {"y": 0.615, "x": 0.75, "z": 20}, "visibility": false}, "ob_1": {"rotation": 0.0, "texture": {"left": 0.15, "bottom": 1, "right": 0.33, "name": "tree", "top": 0}, "dimension": {"height": 0.15, "width": 0.15}, "position": {"y": 0.5, "x": 0.75, "z": 3}, "visibility": false}, "guy": {"rotation": 0.0, "texture": {"left": 0, "bottom": 1, "right": 0.09, "name": "anim", "top": 0}, "dimension": {"height": 0.4, "width": 0.4}, "position": {"y": 0.4, "x": 0.75, "z": 3}, "visibility": true}, "progress": {"rotation": 0.0, "texture": {"left": 0, "bottom": 1, "right": 1, "name": "progress", "top": 0}, "dimension": {"height": 0.04, "width": 0.3}, "position": {"y": 0.05, "x": 0.18, "z": 8}, "visibility": true}, "stink": {"rotation": 0.0, "texture": {"left": 0, "bottom": 1, "right": 0.5, "name": "stink", "top": 0}, "dimension": {"height": 0.2, "width": 0.2}, "position": {"y": 0.35, "x": 0.8, "z": 11}, "visibility": false}, "ob_0": {"rotation": 0.0, "texture": {"left": 0.15, "bottom": 1, "right": 0.33, "name": "tree", "top": 0}, "dimension": {"height": 0.15, "width": 0.15}, "position": {"y": 0.5, "x": 0.75, "z": 3}, "visibility": false}, "background": {"rotation": 0.0, "texture": {"left": 0, "bottom": 1, "right": 8, "name": "bg_1", "top": 0}, "dimension": {"height": 1.0, "width": 3}, "position": {"y": 0.5, "x": 0.75, "z": 2}, "visibility": true}, "ob_3": {"rotation": 0.0, "texture": {"left": 0.15, "bottom": 1, "right": 0.33, "name": "tree", "top": 0}, "dimension": {"height": 0.15, "width": 0.15}, "position": {"y": 0.5, "x": 0.75, "z": 3}, "visibility": false}}, "textures": [], "sounds": []}}, "texture": {"textures": {"key_t": "images/t.png", "logo": "images/logo.png", "anim": "images/agent.png", "tree": "images/tree.png", "jump": "images/agentjump.png", "bg_1": "images/bg_1.png", "any_key": "images/any_key.png", "arrows": "images/arrows.png", "obstacles": "images/sprite_obstacle.png", "letters": "images/letters.png", "progress": "images/progress.png", "stink": "images/stink.png", "key_q": "images/q.png", "numbers": "images/numbers.png", "key_e": "images/e.png"}}, "keys": {"keys": {"p": 0.5, "h": 0.5, "w": 0.5, "v": 0.5, "u": 0.5, "f": 0.5, "i": 0.5, "o": 0.5, "k": 0.5, "j": 0.5, "t": 0.5, "q": 0.5, "y": 0.5, "a": 0.5, "e": 0.5, "z": 0.5, "l": 0.5, "n": 0.5, "s": 0.5, "x": 0.5, "g": 0.5, "r": 0.5, "c": 0.5, "d": 0.5, "m": 0.5, "b": 0.5}}, "sound": {}}));
 window.SJ.module = function(name, code) { if (!window.SJ.settings.modules[name]) {console.error('Module ' + name + ' not found in settings');} if (window.SJ[name]) {console.error('Cannot reserve name ' + name);} window.SJ[name] = code(window.SJ);};
 window.SJ.module('utils', function(sj) {
     
@@ -175,10 +175,12 @@ window.SJ.module('h4render', function (sj) {
     function setTexture(object) {
         var bgWidth = 100.0 / (object.textureRight - object.textureLeft),
                 bgHeight = 100.0 / (object.textureBottom - object.textureTop),
-                div = object.rh4;
+                div = object.rh4,
+                posX = (bgWidth == 100 ? 100 * object.textureLeft : (object.textureLeft/(1-((object.textureRight - object.textureLeft)))*100)),
+                posY = (bgHeight == 100 ? 100 * object.textureTop : (object.textureTop/(1-((object.textureBottom - object.textureTop)))*100));
         div.style.backgroundImage = "url('" + object.texture.image.src + "')";
         div.style.backgroundSize = bgWidth + "% " + bgHeight + "%";
-        div.style.backgroundPosition = bgWidth * object.textureLeft + "% " + bgHeight * object.textureTop + "%";
+        div.style.backgroundPosition = posX + "% " + posY + "%";
         object.textured = false;
     }
 
@@ -565,9 +567,7 @@ window.SJ.module('scene', function (sj) {
                 if (objectData.texture) {
                     object.setTexture(sj.texture.get(objectData.texture.name), objectData.texture.left, objectData.texture.top, objectData.texture.right, objectData.texture.bottom);
                 }
-                if (objectData.visibility) {
-                    object.setVisible(objectData.visibility);
-                }
+                object.setVisible(objectData.visibility);
             }
         }
 
@@ -742,8 +742,8 @@ window.SJ.module('canvas', function(sj) {
          */
         removeScene : function(name) {
             // handle not existing scene
-            if (scenes[name]) {
-                throw new Error("Scena name '" + name + "' alredy exists");
+            if (!scenes[name]) {
+                throw new Error("Scena name does not '" + name + "' alredy exist");
             }
             // handle removing running scene
             if (runningScene === name) {
@@ -881,13 +881,13 @@ window.SJ.module('input', function(sj) {
     function attachKeyEvent(eventName, listener, preventDefault) {
         var currentListener = listeners[eventName];
         detachKeyEvent(eventName);
-        listeners[eventName] = listener;
-        document.addEventListener(eventName, function(event) {
+        listeners[eventName] = function(event) {
             if (preventDefault) {
                 event.preventDefault();
             }
             listener(event.keyCode);
-        });
+        };
+        document.addEventListener(eventName, listeners[eventName]);
     }
     /**
     * Attaches event related to mouse actions, ie: move, clicl
@@ -898,13 +898,13 @@ window.SJ.module('input', function(sj) {
     function attachMouseEvent(eventName, listener, preventDefault) {
         var currentListener = listeners[eventName];
         detachMouseEvent(eventName);
-        listeners[eventName] = listener;
-        canvas.addEventListener(eventName, function(event) {
+        listeners[eventName] = function(event) {
             if (preventDefault) {
                 event.preventDefault();
             }
             listener((event.pageX - canvas.offsetLeft )/ratioX, (event.pageY - canvas.offsetTop)/ratioY);
-        });
+        };
+        canvas.addEventListener(eventName, listeners[eventName]);
     }
 
     /**
@@ -949,6 +949,7 @@ window.SJ.module('input', function(sj) {
         KEY_UP : 38,
         KEY_RIGHT : 39,
         KEY_DOWN : 40,
+
         onKeyDown : function(listener, preventDefault) {
             attachKeyEvent('keydown', listener, preventDefault);
         },
@@ -1004,13 +1005,13 @@ window.SJ.module('animation', function(sj) {
         };
 
         animation.setLooped = function (l) {
-            looped = l;
+            loopped = l;
         };
 
         animation.setCurrentFrame = function (f) {
             currentFrame = f | 0;
             currentStep = f*step;
-            stopeed = false;
+            stopped = false;
         };
 
         animation.play = function (s) {
@@ -1114,27 +1115,71 @@ window.SJ.module('loader', function(sj) {
     };
 });
 
-window.SJ.module('qte_start', function(sj) {
+window.SJ.module('qte_start', function (sj) {
 
     return {
-        'init' : function() {
-            var canvas = sj.canvas,
-                scene, background, animation, guy;
+        'init': function () {
+            var canvas,
+                scene, background, frame = 0,
+                animation, guy,
+                letters = sj.letters, letter, letterObjects = [],
+                listener,
+                generator, generated;
 
+            canvas = sj.canvas;
             canvas.init();
+
+            generator = sj.qte_generator;
+            generated = generator.next();
+
+            listener = sj.listener;
+
             scene = canvas.createScene('scene_1', sj.config('scenes', 'run'));
+
+            for (var i = 0; i < 1; i++) {
+                var letterObj = scene.createObject('a');
+                letterObjects['a'] = letterObj;
+                letters.set(letterObj, i, i, i);
+            }
+
             background = scene.getObject('background');
             guy = scene.getObject('guy');
+
             animation = sj.animation.create(guy);
             animation.setStep(4);
+
             for (var i = 0; i < 6; i++) {
-                animation.addFrame(guy.texture, i/6, 0, (i+1)/6, 1);
+                animation.addFrame(guy.texture, i / 6, 0, (i + 1) / 6, 1);
             }
 
             scene.onFrame = function () {
-                background.setTexture(background.texture, background.textureLeft + 0.1, background.textureTop, background.textureRight + 0.1, background.textureBottom);
+                frame++;
+
+                background.setTexture(
+                    background.texture,
+                    background.textureLeft + 0.1,
+                    background.textureTop,
+                    background.textureRight + 0.1,
+                    background.textureBottom);
                 animation.play();
+
+                for (var obj in letterObjects) {
+                    letters.state(letterObjects[obj], letters.STATE_CORRECT);
+                }
+
+                if (frame % 30) {
+                    listener.clear();
+                    generated = generator.next();
+                }
             };
+
+            sj.input.onKeyDown(function(key) {
+                listener.down(String.fromCharCode(key).toLowerCase(), frame);
+            });
+
+            sj.input.onKeyUp(function(key) {
+                listener.up(String.fromCharCode(key).toLowerCase(), frame);
+            });
 
             canvas.start();
             canvas.loadScene('scene_1');
@@ -1148,16 +1193,14 @@ window.SJ.module('qte_run', function(sj) {
     return {
         'init' : function() {
             var canvas = sj.canvas,
-                scene,
-                keys,
+                scene, generator = sj.qte_generator, generated = generator.next(),
+                keys, listener = sj.listener,
                 keyObjects = {},
                 pressed = {},
                 frameCounter = 0;
 
             canvas.init();
             scene = canvas.createScene('scene_1', sj.config('scenes', 'keys'));
-
-            keys = sj.config('keys', 'keys');
 
             for (var i in keys) {
                 var keyName = keys[i];
@@ -1168,26 +1211,22 @@ window.SJ.module('qte_run', function(sj) {
                 frameCounter++;
 
                 for (var i in keys) {
-                    keyObjects[keys[i]].setVisible((Math.floor(frameCounter/200) % 3) == i);
+                    keyObjects[keys[i]].setVisible(true);
+                }
+
+                if(frameCounter % 30 === 0){
+                    listener.clear();
+
+                    generated = generator.next();
                 }
             };
 
             sj.input.onKeyDown(function(key) {
-                var code = String.fromCharCode(key).toLowerCase(), object = keyObjects[code];
-                if (object && !pressed[code]) {
-                    object.setDimension(object.width, object.height/2);
-                    object.setPosition(object.x, object.y+object.height/2, object.z);
-                    pressed[code] = true;
-                }
+                listener.down(String.fromCharCode(key).toLowerCase(), frameCounter);
             });
 
             sj.input.onKeyUp(function(key) {
-                var code = String.fromCharCode(key).toLowerCase(), object = keyObjects[code];
-                if (object) {
-                    object.setPosition(object.x, object.y-object.height/2, object.z);
-                    object.setDimension(object.width, object.height*2);
-                    pressed[code] = false;
-                }
+                listener.up(String.fromCharCode(key).toLowerCase(), frameCounter);
             });
 
             canvas.start();
@@ -1197,59 +1236,733 @@ window.SJ.module('qte_run', function(sj) {
 
 });
 
-window.SJ.module('qte_generator', function(sj) {
-
-
+window.SJ.module('qte_intro', function(sj) {
 
     return {
         'init' : function() {
-            var canvas = sj.canvas,
-                scene,
-                keys = ['q', 'e', 't'],
-                keyObjects = {},
-                pressed = {},
-                frameCounter = 0;
+            var canvas = sj.canvas, scene, animation, object, frame = 0;
 
             canvas.init();
-            scene = canvas.createScene('scene_1', sj.config('scenes', 'keys'));
 
+            scene = canvas.createScene('welcome', sj.config('scenes', 'welcome'));
+            object = scene.getObject('guy');
 
-            for (var i in keys) {
-                var keyName = keys[i];
-                keyObjects[keyName] = scene.getObject('key_' + keyName);
+            animation = sj.animation.create(object);
+
+            for (var i = 0; i < 6; i++) {
+                animation.addFrame(object.texture, i / 16, 0, (i + 1) / 16, 1);
             }
 
             scene.onFrame = function () {
-                frameCounter++;
+                frame++;
+                scene.getObject("any_key").setVisible(Math.floor(frame/10) % 2);
 
-                for (var i in keys) {
-                    keyObjects[keys[i]].setVisible((Math.floor(frameCounter/200) % 3) == i);
-                }
+                animation.play();
             };
 
             sj.input.onKeyDown(function(key) {
-                var code = String.fromCharCode(key).toLowerCase(), object = keyObjects[code];
-                if (object && !pressed[code]) {
-                    object.setDimension(object.width, object.height/2);
-                    object.setPosition(object.x, object.y+object.height/2, object.z);
-                    pressed[code] = true;
-                }
+                sj.input.clearKeyDown();
+                sj.qte_game.init();
+
             });
 
-            sj.input.onKeyUp(function(key) {
-                var code = String.fromCharCode(key).toLowerCase(), object = keyObjects[code];
-                if (object) {
-                    object.setPosition(object.x, object.y-object.height/2, object.z);
-                    object.setDimension(object.width, object.height*2);
-                    pressed[code] = false;
+            canvas.start();
+            canvas.loadScene('welcome');
+        }
+    };
+
+});
+
+window.SJ.module('qte_generator', function (sj) {
+    return {
+        'next': function () {
+            var types = [sj.single, sj.pair, sj.choice, sj.sequence, sj.triple],
+                random = types[types.length * Math.random() << 0];
+
+            return random.next();
+        }
+    };
+});
+
+window.SJ.module('qte_game', function (sj) {
+    var canvas, scene, currentLocation = 0, canvasWidth = 1.5, speed = 0.02, speed_add = 0, runAnimation, jumpAnimation, slideAnimation, stinkAnimation,
+        loadAnimations = function () {
+            var guy = scene.getObject('guy'), stink = scene.getObject('stink');
+            runAnimation = sj.animation.create(guy);
+            jumpAnimation = sj.animation.create(guy);
+            slideAnimation = sj.animation.create(guy);
+            stinkAnimation = sj.animation.create(stink);
+            jumpAnimation.setStep(4);
+            jumpAnimation.setLooped(false);
+            stinkAnimation.setStep(4);
+            slideAnimation.setStep(7);
+            slideAnimation.setLooped(false);
+
+
+            for (var i = 0; i < 6; i++) {
+                runAnimation.addFrame(guy.texture, i / 16, 0, (i + 1) / 16, 1);
+            }
+            for (i = 6; i < 10; i++) {
+                jumpAnimation.addFrame(guy.texture, i / 16, 0, (i + 1) / 16, 1);
+            }
+            for (i = 11; i < 13; i++) {
+                slideAnimation.addFrame(guy.texture, i / 16, 0, (i + 1) / 16, 1);
+            }
+            for (i = 0; i < 2; i++) {
+                stinkAnimation.addFrame(stink.texture, i / 2, 0, (i + 1) / 2, 1);
+            }
+        },
+        run = function () {
+            var background, obstacle, currentAnimation, guy,
+                frame = 0, phase_counter = 0,
+                letters, letter, letterObjects = [],
+                numbers, numberObjects = [],
+                arrows, arrowObject, arrowAnimation,
+                listener, blinking = false,
+                generator, generated, progress, generateObstacle = true, obstacles = [],
+                downObstacles = ['ob_0', 'ob_1', 'ob_2', 'ob_3'], upObstacles = ['ob_4', 'ob_5', 'ob_6'], j = 0, currentObstacle, done = false;
+            canvas = sj.canvas;
+            canvas.init();
+            if (!scene) {
+                scene = canvas.createScene('scene_1', sj.config('scenes', 'run'));
+            }
+            background = scene.getObject('background');
+
+            progress = scene.getObject("progress");
+            guy = scene.getObject('guy');
+
+            loadAnimations();
+
+            for (var n in downObstacles) {
+                obstacles[j] = scene.getObject(downObstacles[n]);
+                obstacles[j]['animation'] = jumpAnimation;
+                j++;
+            }
+
+            for (n in upObstacles) {
+                obstacles[j] = scene.getObject(upObstacles[n]);
+                obstacles[j]['animation'] = slideAnimation;
+                j++;
+            }
+
+            numbers = sj.numbers;
+            numberObjects = numbers.init(scene);
+
+            generator = sj.qte_generator;
+            generated = generator.next();
+
+            letters = sj.letters;
+            letterObjects = letters.init(scene);
+
+            arrows = sj.arrows;
+            arrowObject = arrows.init(scene);
+
+            listener = sj.listener;
+
+
+
+            currentAnimation = runAnimation;
+
+            scene.onFrame = function () {
+                var leftSeconds = 10 - Math.floor(frame / 25), select;
+                frame++;
+
+                progress.setTexture(progress.texture, 0, 0, leftSeconds / 10, 1);
+                progress.setPosition(0.02 * leftSeconds + 0.03, 0.03, 10);
+                progress.setDimension(0.04 * leftSeconds, 0.04);
+
+                if (leftSeconds < 0) {
+                    stinkAnimation.play();
+                    scene.getObject("stink").setVisible(true);
+                    scene.getObject("any_key").setVisible(true);
+                    guy.setTexture(guy.texture, 14 / 16, 0, 15 / 16, 1);
+                    sj.input.onKeyDown(function () {
+                        frame = 0;
+                        scene.getObject("stink").setVisible(false);
+                        scene.getObject("any_key").setVisible(false);
+                        generateObstacle = true;
+                        for (var o in obstacles) {
+                            obstacles[o].setVisible(false);
+                        }
+                        currentObstacle = undefined;
+                        blinking = 0;
+                        guy.setVisible(true);
+                        sj.input.onKeyDown(function (key) {
+                            listener.down(String.fromCharCode(key).toLowerCase(), frame);
+                        });
+
+                        sj.input.onKeyUp(function (key) {
+                            listener.up(String.fromCharCode(key).toLowerCase(), frame);
+                        });
+
+                        listener.resetScore();
+
+                        sj.numbers.set(numberObjects.tenth, numberObjects.unit, 0);
+                    });
+                    return;
                 }
+
+                if (generateObstacle) {
+                    select = Math.floor(Math.random() * obstacles.length);
+                    while (obstacles[select].visible) {
+                        select = Math.floor(Math.random() * obstacles.length);
+                    }
+                    var o = obstacles[select];
+                    o.setPosition(frame < 5 ? -0.7 : -0.4, o.y, o.z);
+                    o.setVisible(true);
+                    generateObstacle = false;
+                }
+
+                if (frame - blinking < 0) {
+                    guy.setVisible(frame % 2);
+                } else {
+                    guy.setVisible(true);
+                }
+
+                background.setPosition(currentLocation - Math.floor(currentLocation / 1.5) * 1.5, background.y, background.z);
+                currentAnimation.play();
+                if (currentAnimation.hasStopped()) {
+                    currentAnimation = runAnimation;
+                }
+
+
+                currentLocation += speed;
+                if (undefined !== arrowAnimation) {
+                    arrowAnimation.play();
+                }
+
+                for (select in obstacles) {
+                    var ob = obstacles[select];
+                    if (ob.visible) {
+                        ob.setPosition(ob.x + speed, ob.y, ob.z);
+                        if (ob.x > 1.8) {
+                            ob.setVisible(false);
+                        }
+                        if (ob.x > -0.5 && ob.x < 0.50 && !currentObstacle) {
+                            currentObstacle = ob;
+                            phase_counter = 0;
+
+                            listener.clear();
+                            generated = generator.next();
+
+                            arrowAnimation = arrows.set(arrowObject, generated.type);
+
+                            for (var obj in sj.config('keys', 'keys')) {
+                                var ind = generated.keys.indexOf(obj), letter = letterObjects[obj];
+                                if (ind != -1) {
+                                    letters.position(letter, ind);
+
+                                    letter.setVisible(true);
+                                } else {
+                                    letter.setVisible(false);
+                                }
+                            }
+                            speed = 0.02;
+                            done = false;
+
+
+                        }
+                        if (currentObstacle && currentObstacle.x > 0.50) {
+                            generateObstacle = true;
+                            if (done) {
+                                currentAnimation = currentObstacle.animation;
+                                currentAnimation.setCurrentFrame(0);
+                            } else {
+                                blinking = frame + 20;
+
+                                // wyłącz
+                            }
+                            currentObstacle = undefined;
+                            listener.clear();
+                        }
+                    }
+
+                }
+
+                if (done) {
+                    speed = 0.06;
+                }
+
+                if (currentObstacle) {
+                    for (var obj in generated.keys) {
+                        var ident = generated.keys[obj], check = listener.check(generated, ident, numberObjects);
+
+                        letters.state(letterObjects[ident], check);
+
+                        if (sj.letters.STATE_CORRECT === check) {
+                            done = true;
+                            listener.clear();
+                        }
+                    }
+                }
+
+            };
+
+            sj.input.onKeyDown(function (key) {
+                listener.down(String.fromCharCode(key).toLowerCase(), frame);
+            });
+
+            sj.input.onKeyUp(function (key) {
+                listener.up(String.fromCharCode(key).toLowerCase(), frame);
             });
 
             canvas.start();
             canvas.loadScene('scene_1');
+        };
+
+
+    return {
+        'init': run
+    };
+
+});
+
+window.SJ.module('letters', function (sj) {
+
+    return {
+        STATE_IDLE: 0,
+        STATE_CORRECT: 1,
+        STATE_INCORRECT: 2,
+        STATE_PART: 3,
+
+        POS_TOP: 0,
+        POS_MIDDLE: 1,
+        POS_BOTTOM: 2,
+
+        POS_OFFSET: 0.10,
+
+        BASE_X: 0.75,
+        BASE_Y: 0.728,
+        BASE_Z: 10,
+
+        DIVIDER_X: 0.25,
+        DIVIDER_Y: 0.03846,
+
+        'init': function (scene) {
+            var objects = {}, iterator = 0;
+            for (var i in sj.config('keys', 'keys')) {
+                var obj = scene.createObject(i);
+
+                objects[i] = obj;
+                sj.letters.set(obj, iterator++, sj.letters.STATE_IDLE, 0);
+            }
+
+            return objects;
+        },
+        'set': function (object, letter, state, position) {
+            var letters, left = state * sj.letters.DIVIDER_X, top = letter * sj.letters.DIVIDER_Y;
+
+            sj.texture.load('letters');
+
+            object.setTexture(
+                sj.texture.get('letters'),
+                left,
+                top,
+                left + sj.letters.DIVIDER_X,
+                top + sj.letters.DIVIDER_Y);
+            object.setDimension(0.09, 0.09);
+            object.setPosition(0.75, 0.728 + position * sj.letters.POS_OFFSET, sj.letters.BASE_Z);
+            object.setVisible(false);
+        },
+        'position': function (object, position) {
+            object.setPosition(sj.letters.BASE_X, sj.letters.BASE_Y + position * sj.letters.POS_OFFSET, sj.letters.BASE_Z);
+        },
+        'state': function (object, state) {
+            var left = state * sj.letters.DIVIDER_X;
+            object.setTexture(object.texture, left, object.textureTop, left + sj.letters.DIVIDER_X, object.textureBottom);
         }
     };
 
+});
+
+window.SJ.module('pair', function(sj) {
+    return {
+        'next' : function () {
+            var keys = sj.config('keys', 'keys'),
+                r = sj.random,
+                a = r.get(), b = r.get();
+
+            while(b === a) {
+                b = r.get();
+            }
+
+            return {
+                type: sj.arrows.TYPE_PAIR,
+                keys: [
+                    a, b
+                ],
+                points: 2
+            };
+        }
+    };
+});
+
+window.SJ.module('single', function(sj) {
+    return {
+        'next' : function () {
+            var keys = sj.config('keys', 'keys'),
+                r = sj.random;
+            return {
+                type: sj.arrows.TYPE_SINGLE,
+                keys: [
+                    r.get()
+                ],
+                points: 1
+            };
+        }
+    };
+});
+
+window.SJ.module('choice', function (sj) {
+    return {
+        'next': function () {
+            var keys = sj.config('keys', 'keys'),
+                r = sj.random,
+                a = r.get(), b = r.get();
+
+            while (b === a) {
+                b = r.get();
+            }
+
+            return {
+                type: sj.arrows.TYPE_CHOICE,
+                keys: [
+                    a, b
+                ],
+                points: 1
+            };
+        }
+    };
+});
+
+window.SJ.module('triple', function (sj) {
+    return {
+        'next': function () {
+            var keys = sj.config('keys', 'keys'),
+                r = sj.random,
+                a = r.get(), b = r.get(), c = r.get();
+
+            while (b === a) {
+                b = r.get();
+            }
+
+            while (c === a || c === b) {
+                c = r.get();
+            }
+
+            return {
+                type: sj.arrows.TYPE_TRIPLE,
+                keys: [
+                    a, b, c
+                ],
+                points: 3
+            }
+        }
+    };
+});
+
+window.SJ.module('sequence', function(sj) {
+    return {
+        'next' : function () {
+            var keys = sj.config('keys', 'keys'),
+                r = sj.random,
+                a = r.get(), b = r.get(), c = r.get();
+
+            while(b === a) {
+                b = r.get();
+            }
+
+            while(c === a || c === b) {
+                c = r.get();
+            }
+
+            return {
+                type: sj.arrows.TYPE_SEQUENCE,
+                keys: [
+                    a, b, c
+                ],
+                points: 4
+            };
+        }
+    };
+});
+
+window.SJ.module('random', function(sj) {
+    return {
+        'get' : function () {
+            var keys = sj.config('keys', 'keys'),
+                distrib = {},
+                rand, selected,
+                sum = 0;
+
+            for (var i in keys) {
+                sum += parseFloat(keys[i]);
+                distrib[i] = sum;
+            }
+
+            rand = Math.random() * sum;
+
+            for (var j in distrib) {
+                if (distrib[j] >= rand) {
+                    return j;
+                }
+            }
+        }
+    };
+});
+
+window.SJ.module('listener', function (sj) {
+    var memory = {}, score = 0, tryout;
+
+    var internal_min = function (obj) {
+        var local;
+
+        for (var i in obj) {
+            if (obj[i] !== -1) {
+                if (undefined === local) {
+                    local = obj[i];
+                } else if (obj[i] != -1 && local > obj[i]) {
+                    local = obj[i];
+                }
+            }
+        }
+
+        return local;
+    };
+
+    var internal_max = function (obj) {
+        var local;
+
+        for (var i in obj) {
+            if (obj[i] !== -1) {
+                if (undefined === local) {
+                    local = obj[i];
+                } else if (local < obj[i]) {
+                    local = obj[i];
+                }
+            }
+        }
+
+        return local;
+    };
+
+    var internal_filter = function (func, obj) {
+        var filtered = {};
+
+        for (var i in obj) {
+            if (func(i)) {
+                filtered[i] = obj[i];
+            }
+        }
+
+        return filtered;
+    };
+
+    var internal_check = function (generated, letter) {
+        var keys = generated.keys, length = keys.length, memkeys = Object.keys(memory), memlength = memkeys.length;
+        switch (generated.type) {
+            case sj.arrows.TYPE_SINGLE:
+            case sj.arrows.TYPE_PAIR:
+            case sj.arrows.TYPE_TRIPLE:
+                var filtered = internal_filter(function (k) {
+                        return keys.indexOf(k) != -1;
+                    }, memory), min = internal_min(memory), max = internal_max(memory),
+                    fillkeys = Object.keys(filtered), fillen = fillkeys.length;
+
+                if (0 >= memlength) {
+                    return sj.letters.STATE_IDLE;
+                } else if (memlength !== fillen || 1 < Math.abs(max - min)) {
+                    return sj.letters.STATE_INCORRECT;
+                } else if (length > fillen) {
+                    if (undefined !== letter) {
+                        if (fillkeys.indexOf(letter) != -1) {
+                            return sj.letters.STATE_PART;
+                        } else {
+                            return sj.letters.STATE_PART;
+                        }
+                    } else {
+                        return sj.letters.STATE_PART;
+                    }
+                } else {
+                    return sj.letters.STATE_CORRECT;
+                }
+            case sj.arrows.TYPE_CHOICE:
+                if (1 === memlength) {
+                    return 1 === Object.keys(internal_filter(function (k) {
+                        return keys.indexOf(k) != -1;
+                    }, memory)).length ? sj.letters.STATE_CORRECT : sj.letters.STATE_INCORRECT;
+                } else if (0 >= memlength) {
+                    return sj.letters.STATE_IDLE;
+                }
+            case sj.arrows.TYPE_SEQUENCE:
+                var time = internal_min(internal_filter(function (o) {
+                    return keys.indexOf(o) != -1;
+                }, memory));
+
+                for (var k in keys) {
+                    var next = memory[keys[k]];
+                    if (next === undefined) {
+                        return sj.letters.STATE_IDLE;
+                    } else if (time > next) {
+                        return sj.letters.STATE_INCORRECT;
+                    } else if (undefined !== letter && k === letter) {
+                        return sj.letters.STATE_PART
+                    }
+
+                    time = next;
+                }
+
+                return memlength === length ? sj.letters.STATE_CORRECT : sj.letters.STATE_INCORRECT;
+            default:
+                return false
+        }
+
+        return false;
+    };
+
+    return {
+        'down': function (key, time) {
+            memory[key] = -1;
+        },
+        'up': function (key, time) {
+            if (undefined !== memory[key] && -1 === memory[key]) {
+                memory[key] = time;
+            }
+        },
+        'check': function (generated, letter, objects) {
+            var checked = internal_check(generated);
+            if (tryout !== checked && sj.letters.STATE_CORRECT === checked) {
+                score += generated.points;
+                tryout = checked;
+
+                sj.numbers.set(objects.tenth, objects.unit, score);
+            }
+
+            return checked;
+        },
+        'clear': function () {
+            memory = {}, tryout = undefined;
+        },
+        resetScore: function () {
+            score = 0;
+        }
+    };
+});
+
+window.SJ.module('numbers', function (sj) {
+    return {
+        'init': function (scene) {
+            var tenth = scene.createObject('tenth'), unit = scene.createObject('unit');
+
+            tenth.setTexture(
+                sj.texture.get('numbers'),
+                0,
+                0,
+                1,
+                1
+            );
+            tenth.setDimension(0.09, 0.09);
+            tenth.setPosition(1.25, 0.10, sj.letters.BASE_Z);
+            tenth.setVisible(false);
+
+            unit.setTexture(
+                sj.texture.get('numbers'),
+                0,
+                0,
+                1,
+                1
+            );
+            unit.setDimension(0.09, 0.09);
+            unit.setPosition(1.25, 0.10, sj.letters.BASE_Z);
+            unit.setVisible(false);
+
+            return {
+                tenth: tenth,
+                unit: unit
+            };
+        },
+        'set': function (tenth, unit, number) {
+            sj.texture.load('numbers');
+
+            if (10 <= number) {
+                var tens = Math.floor(number / 10);
+
+                tenth.setTexture(
+                    sj.texture.get('numbers'),
+                    tens * 0.1,
+                    0,
+                    tens * 0.1 + 0.1,
+                    1
+                );
+                tenth.setDimension(0.09, 0.09);
+                tenth.setPosition(1.33, 0.10, sj.letters.BASE_Z);
+                tenth.setVisible(true);
+            } else {
+                tenth.setVisible(false);
+            }
+
+            var unt = number % 10;
+            unit.setTexture(
+                sj.texture.get('numbers'),
+                unt * 0.1,
+                0,
+                unt * 0.1 + 0.1,
+                1
+            );
+            unit.setDimension(0.09, 0.09);
+            unit.setPosition(1.4, 0.10, sj.letters.BASE_Z);
+            unit.setVisible(true);
+        }
+    };
+});
+
+window.SJ.module('arrows', function (sj) {
+    return {
+        TYPE_SINGLE: 0,
+        TYPE_PAIR: 1,
+        TYPE_TRIPLE: 2,
+        TYPE_SEQUENCE: 3,
+        TYPE_CHOICE: 4,
+
+        'init': function (scene) {
+            var arrows = scene.createObject('arrows');
+
+            arrows.setTexture(
+                sj.texture.get('arrows'),
+                0,
+                0,
+                1,
+                1
+            );
+            arrows.setDimension(32 / 160, 35 / 105);
+            arrows.setPosition(0.90, 0.83, sj.letters.BASE_Z);
+            arrows.setVisible(false);
+
+            return arrows;
+        },
+        'set': function (arrows, type) {
+            sj.texture.load('arrows');
+
+            arrows.setTexture(
+                sj.texture.get('arrows'),
+                0.2 * type,
+                0,
+                0.2 * type + 0.2,
+                0.33
+            );
+            arrows.setDimension(32 / 160, 31 / 105);
+            arrows.setPosition(0.90, 0.83, sj.letters.BASE_Z);
+            arrows.setVisible(true);
+
+            var animation = sj.animation.create(arrows);
+
+            for (var j = 0; j < 3; j++) {
+                animation.addFrame(arrows.texture, 0.2 * type, j / 3, 0.2 * type + 0.2, (j + 1) / 3);
+            }
+
+            return animation;
+        }
+    };
 });
 setTimeout(window.SJ[window.SJ.settings.init.module][window.SJ.settings.init.action], 1);
 
