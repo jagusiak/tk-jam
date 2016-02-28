@@ -34,6 +34,7 @@ window.SJ.module('qte_game', function (sj) {
                 arrows, arrowObject, arrowAnimation,
                 listener, blinking = false,
 				playerName,
+				ranking = "Last Scores: \n\n",
                 generator, generated, progress, generateObstacle = true, obstacles = [],
                 downObstacles = ['ob_0', 'ob_1', 'ob_2'], upObstacles = ['ob_3','ob_4', 'ob_5', 'ob_6'], j = 0, currentObstacle, done = false;
             canvas = sj.canvas;
@@ -91,12 +92,21 @@ window.SJ.module('qte_game', function (sj) {
 			
 				
 				if (playerName === undefined) {
-					playerName = prompt ("Confirm your name" + listener.rankingScore());
+					playerName = prompt ("Confirm your name:");
 				}
 				
 				
 				
                 if (leftSeconds < 0) {
+					
+					
+					if (playerName !== "-1"){
+						ranking += playerName + ": " + listener.rankingScore() + ";";
+						playerName = "-1";
+					}
+					
+					
+					
                     stinkAnimation.play();
                     scene.getObject("stink").setVisible(true);
                     scene.getObject("any_key").setVisible(true);
@@ -104,7 +114,7 @@ window.SJ.module('qte_game', function (sj) {
 
                     sj.input.onKeyDown(function () {
 					
-						playerName = prompt ("Confirm your name" + listener.rankingScore());
+						playerName = prompt (ranking.split(";").join("\n") + "\n\n Confirm your name:");
                         frame = 0;
                         scene.getObject("stink").setVisible(false);
                         scene.getObject("any_key").setVisible(false);
@@ -131,9 +141,9 @@ window.SJ.module('qte_game', function (sj) {
                     });
                     return;
                 }
-				
 
 				
+
 
                 if (generateObstacle) {
                     select = Math.floor(Math.random() * obstacles.length);
