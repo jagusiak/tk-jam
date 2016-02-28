@@ -192,13 +192,13 @@
             "ob_3": {
                 "position": {
                     "x": 0.75,
-                    "y": 0.5,
+                    "y": 0.45,
                     "z": 3
                 },
                 "rotation": 0.0,
                 "dimension": {
-                    "width": 0.15,
-                    "height": 0.15
+                    "width": 0.25,
+                    "height": 0.25
                 },
                 "texture": {
                     "name": "obstacles",

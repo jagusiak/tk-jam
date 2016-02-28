@@ -34,7 +34,7 @@ window.SJ.module('qte_game', function (sj) {
                 arrows, arrowObject, arrowAnimation,
                 listener, blinking = false,
                 generator, generated, progress, generateObstacle = true, obstacles = [],
-                downObstacles = ['ob_0', 'ob_1', 'ob_2', 'ob_3'], upObstacles = ['ob_4', 'ob_5', 'ob_6'], j = 0, currentObstacle, done = false;
+                downObstacles = ['ob_0', 'ob_1', 'ob_2'], upObstacles = ['ob_3', 'ob_4', 'ob_5', 'ob_6'], j = 0, currentObstacle, done = false;
             canvas = sj.canvas;
             canvas.init();
 
