@@ -33,6 +33,7 @@ window.SJ.module('qte_game', function (sj) {
                 numbers, numberObjects = [],
                 arrows, arrowObject, arrowAnimation,
                 listener, blinking = false,
+				playerName,
                 generator, generated, progress, generateObstacle = true, obstacles = [],
                 downObstacles = ['ob_0', 'ob_1', 'ob_2'], upObstacles = ['ob_3','ob_4', 'ob_5', 'ob_6'], j = 0, currentObstacle, done = false;
             canvas = sj.canvas;
@@ -85,13 +86,25 @@ window.SJ.module('qte_game', function (sj) {
                 progress.setTexture(progress.texture, 0, 0, leftSeconds / 10, 1);
                 progress.setPosition(0.02 * leftSeconds + 0.03, 0.03, 10);
                 progress.setDimension(0.04 * leftSeconds, 0.04);
+				
 
+			
+				
+				if (playerName === undefined) {
+					playerName = prompt ("Confirm your name" + listener.rankingScore());
+				}
+				
+				
+				
                 if (leftSeconds < 0) {
                     stinkAnimation.play();
                     scene.getObject("stink").setVisible(true);
                     scene.getObject("any_key").setVisible(true);
                     guy.setTexture(guy.texture, 14 / 16, 0, 15 / 16, 1);
+
                     sj.input.onKeyDown(function () {
+					
+						playerName = prompt ("Confirm your name" + listener.rankingScore());
                         frame = 0;
                         scene.getObject("stink").setVisible(false);
                         scene.getObject("any_key").setVisible(false);
@@ -118,6 +131,9 @@ window.SJ.module('qte_game', function (sj) {
                     });
                     return;
                 }
+				
+
+				
 
                 if (generateObstacle) {
                     select = Math.floor(Math.random() * obstacles.length);
@@ -215,6 +231,8 @@ window.SJ.module('qte_game', function (sj) {
                 }
 
             };
+			
+
 
             sj.input.onKeyDown(function (key) {
                 listener.down(String.fromCharCode(key).toLowerCase(), frame);
