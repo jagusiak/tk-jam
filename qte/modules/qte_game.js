@@ -102,7 +102,6 @@ window.SJ.module('qte_game', function (sj) {
 					
 					if (playerName !== "-1"){
 						ranking += playerName + ": " + listener.rankingScore() + ";";
-						console.log(ranking);
 						playerName = "-1";
 					}
 					
