@@ -181,10 +181,10 @@
                     "height": 0.15
                 },
                 "texture": {
-                    "name": "tree",
-                    "top": 0,
-                    "left": 0.15,
-                    "right": 0.33,
+                    "name": "obstacles",
+                    "top": 0.45,
+                    "left": 0.35,
+                    "right": 0.52,
                     "bottom": 1
                 },
                 "visibility": false
@@ -201,9 +201,9 @@
                     "height": 0.15
                 },
                 "texture": {
-                    "name": "tree",
+                    "name": "obstacles",
                     "top": 0,
-                    "left": 0.15,
+                    "left": 0,
                     "right": 0.33,
                     "bottom": 1
                 },
@@ -221,10 +221,10 @@
                     "height": 0.15
                 },
                 "texture": {
-                    "name": "tree",
-                    "top": 0,
-                    "left": 0.15,
-                    "right": 0.33,
+                    "name": "obstacles",
+                    "top": 0.45,
+                    "left": 0.35,
+                    "right": 0.52,
                     "bottom": 1
                 },
                 "visibility": false
@@ -241,10 +241,10 @@
                     "height": 0.15
                 },
                 "texture": {
-                    "name": "tree",
-                    "top": 0,
-                    "left": 0.15,
-                    "right": 0.33,
+                    "name": "obstacles",
+                    "top": 0.45,
+                    "left": 0.35,
+                    "right": 0.52,
                     "bottom": 1
                 },
                 "visibility": false

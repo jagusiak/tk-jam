@@ -15,7 +15,6 @@
 
         "bg_1" : "images/bg_1.png",
         "anim" : "images/agent.png",
-		"jump" : "images/agentjump.png",
-        "tree" : "images/tree.png"
+		"jump" : "images/agentjump.png"
     }
 }
