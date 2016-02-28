@@ -112,6 +112,7 @@ window.SJ.module('qte_game', function (sj) {
                     scene.getObject("stink").setVisible(true);
                     scene.getObject("any_key").setVisible(true);
                     guy.setTexture(guy.texture, 14 / 16, 0, 15 / 16, 1);
+
                     sj.input.onKeyDown(function () {
 					
 						playerName = prompt (ranking.split(";").join("\n") + "\n\n Confirm your name:");

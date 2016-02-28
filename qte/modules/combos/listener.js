@@ -90,16 +90,16 @@ window.SJ.module('listener', function (sj) {
                     var next = memory[keys[k]];
                     if (next === undefined) {
                         return sj.letters.STATE_IDLE;
-                    } else if (time > next) {
+                    } else if (-1 !== next && time > next) {
                         return sj.letters.STATE_INCORRECT;
-                    } else if (undefined !== letter && k === letter) {
+                    } else if (memlength < length && undefined !== letter && keys[k] === letter) {
                         return sj.letters.STATE_PART
                     }
 
                     time = next;
                 }
 
-                return memlength === length ? sj.letters.STATE_CORRECT : sj.letters.STATE_INCORRECT;
+                return sj.letters.STATE_CORRECT;
             default:
                 return false
         }
@@ -117,7 +117,7 @@ window.SJ.module('listener', function (sj) {
             }
         },
         'check': function (generated, letter, objects) {
-            var checked = internal_check(generated);
+            var checked = internal_check(generated, letter);
             if (tryout !== checked && sj.letters.STATE_CORRECT === checked) {
                 score += generated.points;
                 tryout = checked;
