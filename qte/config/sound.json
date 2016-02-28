@@ -1,1 +1,5 @@
-{}
+{
+    "sounds" : {
+        "soundtrack" : "sounds/soundtrack96_1.mp3"
+    }
+}

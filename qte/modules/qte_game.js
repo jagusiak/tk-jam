@@ -37,6 +37,7 @@ window.SJ.module('qte_game', function (sj) {
                 downObstacles = ['ob_0', 'ob_1', 'ob_2', 'ob_3'], upObstacles = ['ob_4', 'ob_5', 'ob_6'], j = 0, currentObstacle, done = false;
             canvas = sj.canvas;
             canvas.init();
+
             if (!scene) {
                 scene = canvas.createScene('scene_1', sj.config('scenes', 'run'));
             }
@@ -46,6 +47,9 @@ window.SJ.module('qte_game', function (sj) {
             guy = scene.getObject('guy');
 
             loadAnimations();
+
+            sj.sound.load('soundtrack');
+            sj.sound.get('soundtrack').play();
 
             for (var n in downObstacles) {
                 obstacles[j] = scene.getObject(downObstacles[n]);
@@ -72,9 +76,6 @@ window.SJ.module('qte_game', function (sj) {
             arrowObject = arrows.init(scene);
 
             listener = sj.listener;
-
-
-
             currentAnimation = runAnimation;
 
             scene.onFrame = function () {
@@ -112,6 +113,7 @@ window.SJ.module('qte_game', function (sj) {
                         listener.resetScore();
 
                         sj.numbers.set(numberObjects.tenth, numberObjects.unit, 0);
+                        sj.sound.get('soundtrack').play();
                     });
                     return;
                 }
