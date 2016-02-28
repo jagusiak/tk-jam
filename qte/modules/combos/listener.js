@@ -130,6 +130,11 @@ window.SJ.module('listener', function (sj) {
         'clear': function () {
             memory = {}, tryout = undefined;
         },
+		
+		rankingScore: function () {
+			return score;
+		},
+		
         resetScore: function () {
             score = 0;
         }
