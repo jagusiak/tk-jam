@@ -27,7 +27,7 @@
         }
     },
     "init": {
-        "module": "qte_intro",
+        "module": "qte_tutorial",
         "action": "init"
     }
 }

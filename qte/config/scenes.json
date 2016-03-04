@@ -65,6 +65,32 @@
             }
         }
     },
+    "tutorial": {
+        "sounds": [],
+        "textures": [],
+        "objects": {
+            "guy": {
+                "position": {
+                    "x": 1.0,
+                    "y": 0.3,
+                    "z": 3
+                },
+                "rotation": 0.0,
+                "dimension": {
+                    "width": 0.8,
+                    "height": 0.8
+                },
+                "texture": {
+                    "name": "anim",
+                    "top": 0,
+                    "left": 0,
+                    "right": 1,
+                    "bottom": 1
+                },
+                "visibility": true
+            }
+        }
+    },
     "run": {
         "sounds": [],
         "textures": [],
